@@ -21,6 +21,9 @@ public class MainGameSceneState implements StateBase {
         // 3. Create Background
         RenderBackground.Create();
 
+        // Add more entities
+        SmurfEntity.Create();
+
         // Example to include another Renderview for Pause Button
     }
 
@@ -45,11 +48,11 @@ public class MainGameSceneState implements StateBase {
     {
         EntityManager.Instance.Update(_dt);
 
-        if (TouchManager.Instance.IsDown())
-        {
-            //6. Example of touch on screen in the main game to trigger back to Main menu
-            StateManager.Instance.ChangeState("MainMenu");
-        }
+//        if (TouchManager.Instance.IsDown())
+//        {
+//            //6. Example of touch on screen in the main game to trigger back to Main menu
+//            StateManager.Instance.ChangeState("MainMenu");
+//        }
     }
 }
 

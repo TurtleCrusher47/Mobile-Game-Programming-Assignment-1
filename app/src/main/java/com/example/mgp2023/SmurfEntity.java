@@ -7,7 +7,10 @@ import java.util.Random;
 
 public class SmurfEntity implements EntityBase, Collidable{
     
-	 // 1. Declare the use of spritesheet using Sprite class.
+	 // 1. Declare the use of spritesheet using Sprite class
+    // Usual method of loading a bmp / image
+    public Bitmap bmp = null;
+    public Sprite spritesheet = null;
 
     private boolean isDone = false;
     private boolean isInit = false;
@@ -34,10 +37,22 @@ public class SmurfEntity implements EntityBase, Collidable{
     public void Init(SurfaceView _view) {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
-        
-	
-		  // 3. Get some random position of x and y 
-        
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurf_sprite), 4, 4, 16);
+
+        // If you want to load a certain frame for animation --> SetAnimationFrames(int _start, int _end)
+        // spritesheet.SetAnimationFrames(1,15);
+
+        // 3. Get some random position of x and y
+        // Random generator under the java utility library
+        Random ranGen = new Random();
+
+        xPos = ranGen.nextFloat() * _view.getWidth();
+        yPos = ranGen.nextFloat() * _view.getHeight();
+
+        xDir = ranGen.nextFloat() * 100.0f - 50.0f;
+        yDir = ranGen.nextFloat() * 100.0f - 50.0f;
+
+
 
         isInit = true;
 
@@ -46,19 +61,28 @@ public class SmurfEntity implements EntityBase, Collidable{
     @Override
     public void Update(float _dt) {
         
-		  // 4. Update spritesheet
+        // 4. Update spritesheet
+        spritesheet.Update(_dt);
 
         // 5. Deal with the touch on screen for interaction of the image using collision check
         if (TouchManager.Instance.HasTouch())
         {
-            // 6. Check collision here!!!
-            
+            // 6. Check collision
+            float imgRadius = spritesheet.GetWidth() * 0.5f;
 
-                // Collided!
+            // Other than check the finger that touch on the screen, the x, y = the image area hence meant this is the image I want to interact with, we
+            // also want to touch and hold and drag this image
+            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched)
+            {
+                // Collided
                 hasTouched = true;
 
                 // 7. Drag the sprite around the screen
+                xPos = TouchManager.Instance.GetPosX();
+                yPos = TouchManager.Instance.GetPosY();
 
+                xPos += xDir * _dt;
+                yPos += yDir * _dt;
             }
         }
 
@@ -120,6 +144,12 @@ public class SmurfEntity implements EntityBase, Collidable{
 
     @Override
     public void OnHit(Collidable _other) {
+        // This allows you to check collision between 2 entities.
+        // Star Entity can cause harm to the player when hit.
+        // If hit by star, you can play an audio, or have a visual feedback or
+        // physical feedback.
+        // SetIsDone(true) --> allows you to delete the entity from the screen.
+
         //if (_other.GetType() == "StarEntity") //Another Entity
         {
             //SetIsDone(true);
