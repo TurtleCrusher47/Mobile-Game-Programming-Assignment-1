@@ -81,6 +81,11 @@ public class RenderBackground implements EntityBase {
     @Override
     public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_DEFAULT;}
 
+//    @Override
+//    public String GetType() {
+//        return null;
+//    }
+
     public static RenderBackground Create(){
         RenderBackground result = new RenderBackground();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_DEFAULT);
