@@ -39,6 +39,7 @@ public class RenderBackground implements EntityBase {
         scaledbmp = Bitmap.createScaledBitmap(bmp, ScreenWidth, ScreenHeight, true);
     }
 
+    // Test
     @Override
     public void Update(float _dt){
         //Scrolling background horizontally.
