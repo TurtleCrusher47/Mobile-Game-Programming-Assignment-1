@@ -94,6 +94,21 @@ public class StateManager {
         return prevState;
     }
 
+    void Start(String _newCurrent)
+    {
+        // Make sure only can call once at the start
+        if (currState != null || nextState != null)
+            return;
+
+        currState = _newCurrent;
+
+        if (currState != null) {
+            StateBase curr = stateMap.get(currState);
+            curr.OnEnter(view);
+            nextState = currState;
+        }
+    }
+
     public void Clean(){
         stateMap.clear();
     }
