@@ -22,7 +22,7 @@ public class Collision
     {
         if (Math.abs(x1 - x2) < sizeX1 + sizeX2)
         {
-            if (Math.abs(Y1 - Y2) < sizeY1 + sizeY2)
+            if (Math.abs(y1 - y2) < sizeY1 + sizeY2)
             {
                 return true;
             }
