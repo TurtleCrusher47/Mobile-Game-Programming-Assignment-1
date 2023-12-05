@@ -26,6 +26,8 @@ public class MainGameSceneState implements StateBase {
 
         RenderTextEntity.Create();
 
+        PauseButtonEntity.Create();
+
         // Example to include another Renderview for Pause Button
     }
 
