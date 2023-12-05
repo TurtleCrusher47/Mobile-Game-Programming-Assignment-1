@@ -17,4 +17,16 @@ public class Collision
 
         return true;
     }
+
+    public static boolean BoxToBox(float x1, float y1, float sizeX1, float sizeY1, float x2, float y2, float sizeX2, float sizeY2)
+    {
+        if (Math.abs(x1 - x2) < sizeX1 + sizeX2)
+        {
+            if (Math.abs(Y1 - Y2) < sizeY1 + sizeY2)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
