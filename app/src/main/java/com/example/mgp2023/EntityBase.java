@@ -9,11 +9,11 @@ public interface EntityBase
 {
  	 //used for entities such as background
     enum ENTITY_TYPE{
-        //ENT_PLAYER,
+        ENT_PLAYER,
         ENT_SMURF,
-        //ENT_PAUSE,
+        ENT_PAUSE,
         ENT_TEXT,
-        //ENT_NEXT,
+        ENT_NEXT,
         ENT_DEFAULT,
     }
 
@@ -26,5 +26,5 @@ public interface EntityBase
     int GetRenderLayer();
     void SetRenderLayer(int _newLayer);
 	ENTITY_TYPE GetEntityType();
-    //String GetType();
+    String GetType();
 }
