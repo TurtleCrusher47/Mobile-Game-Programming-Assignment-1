@@ -67,6 +67,7 @@ public class PauseButtonEntity implements EntityBase
                 {
                     Paused = true;
 
+
                     if (PauseConfirmDialogueFragment.isShown)
                     {
                         return;

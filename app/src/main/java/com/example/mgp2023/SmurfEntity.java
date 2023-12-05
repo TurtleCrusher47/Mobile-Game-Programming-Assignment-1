@@ -60,7 +60,10 @@ public class SmurfEntity implements EntityBase, Collidable{
 
     @Override
     public void Update(float _dt) {
-        
+
+        if (GameSystem.Instance.GetIsPaused())
+            return;
+
         // 4. Update spritesheet
         spritesheet.Update(_dt);
 

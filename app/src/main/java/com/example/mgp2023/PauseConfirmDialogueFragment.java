@@ -37,7 +37,7 @@ public class PauseConfirmDialogueFragment extends DialogFragment {
 
                         //game system has existing methods to get paused boolean
                         //in the entity, the update method will pause or unpause the game
-                        GameSystem.Instance.SetIsPaused((GameSystem.Instance.GetIsPaused()));
+                        GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

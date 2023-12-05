@@ -50,7 +50,8 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void Update(float _dt)
     {
-        EntityManager.Instance.Update(_dt);
+
+        EntityManager.Instance.Update(_dt );
 
 //        if (TouchManager.Instance.IsDown())
 //        {
