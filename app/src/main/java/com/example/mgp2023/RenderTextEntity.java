@@ -98,9 +98,9 @@ public class RenderTextEntity implements EntityBase {
         return ENTITY_TYPE.ENT_TEXT;
     }
 
-//    @Override
-//    public String GetType() {
-//        return "TextEntity";
-//    }
+    @Override
+    public String GetType() {
+        return "TextEntity";
+    }
 
 }

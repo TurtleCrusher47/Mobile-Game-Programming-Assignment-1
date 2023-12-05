@@ -1,15 +1,13 @@
 package com.example.mgp2023;
 
-// Created by TanSiewLan2023
-
 // Need a dedicated thread to run Surfaceview's update method
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.SurfaceHolder;
 
-public class UpdateThread extends Thread {
-
+public class UpdateThread extends Thread
+{
     static final long targetFPS = 60;
 
     private GameView view = null;       //Gameview = Surfaceview

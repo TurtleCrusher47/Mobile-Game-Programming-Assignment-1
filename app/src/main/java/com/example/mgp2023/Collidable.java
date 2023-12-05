@@ -2,7 +2,8 @@ package com.example.mgp2023;
 
 // Created by TanSiewLan2021
 
-public interface Collidable {
+public interface Collidable
+{
     String GetType();
 
     float GetPosX();

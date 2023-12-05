@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
-public class Mainmenu extends Activity implements OnClickListener, StateBase{
-
+public class Mainmenu extends Activity implements OnClickListener, StateBase
+{
     public static Mainmenu Instance = null;
 
     //Define buttons. We have 2 buttons. Start and Back
@@ -18,7 +18,8 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase{
     private Button btn_quit;
 
     @Override
-    protected void onCreate (Bundle saveInstanceState) {
+    protected void onCreate (Bundle saveInstanceState)
+    {
         super.onCreate(saveInstanceState);
 
         setContentView(R.layout.mainmenu);

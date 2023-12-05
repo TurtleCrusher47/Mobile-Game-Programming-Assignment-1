@@ -1,18 +1,18 @@
 package com.example.mgp2023;
 
-// Created by TanSiewLan2023
 // Create a GamePage is an activity class used to hold the GameView which will have a surfaceview
 
 import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
-public class GamePage extends FragmentActivity {
-
+public class GamePage extends FragmentActivity
+{
     public static GamePage Instance = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         Instance = this;
@@ -31,6 +31,5 @@ public class GamePage extends FragmentActivity {
 
         return true;
     }
-
 }
 
