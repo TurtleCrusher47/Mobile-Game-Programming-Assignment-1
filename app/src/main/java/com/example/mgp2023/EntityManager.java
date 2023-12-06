@@ -57,17 +57,17 @@ public class EntityManager {
         {
             EntityBase currEntity = entityList.get(i);
 
-            if (currEntity instanceof Collidable)
+            if (currEntity instanceof ICollidableSphere)
             {
-                Collidable first = (Collidable) currEntity;
+                ICollidableSphere first = (ICollidableSphere) currEntity;
 
                 for (int j = i+1; j < entityList.size(); ++j)
                 {
                     EntityBase otherEntity = entityList.get(j);
 
-                    if (otherEntity instanceof Collidable)
+                    if (otherEntity instanceof ICollidableSphere)
                     {
-                        Collidable second = (Collidable) otherEntity;
+                        ICollidableSphere second = (ICollidableSphere) otherEntity;
 
                         if (Collision.SphereToSphere(first.GetPosX(), first.GetPosY(), first.GetRadius(), second.GetPosX(), second.GetPosY(), second.GetRadius()))
                         {

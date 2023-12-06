@@ -5,9 +5,9 @@ import android.graphics.Canvas;
 import android.view.SurfaceView;
 import java.util.Random;
 
-public class SmurfEntity implements EntityBase, Collidable{
-    
-	 // 1. Declare the use of spritesheet using Sprite class
+public class SmurfEntity implements EntityBase, ICollidableSphere
+{
+	// 1. Declare the use of spritesheet using Sprite class
     // Usual method of loading a bmp / image
     public Bitmap bmp = null;
     public Sprite spritesheet = null;
@@ -146,13 +146,15 @@ public class SmurfEntity implements EntityBase, Collidable{
     }
 
     @Override
-    public void OnHit(Collidable _other) {
+    public void OnHit(ICollidableSphere _other)
+    {
         // This allows you to check collision between 2 entities.
         // Star Entity can cause harm to the player when hit.
         // If hit by star, you can play an audio, or have a visual feedback or
         // physical feedback.
         // SetIsDone(true) --> allows you to delete the entity from the screen.
 
+        System.out.println("Hit");
         //if (_other.GetType() == "StarEntity") //Another Entity
         {
             //SetIsDone(true);

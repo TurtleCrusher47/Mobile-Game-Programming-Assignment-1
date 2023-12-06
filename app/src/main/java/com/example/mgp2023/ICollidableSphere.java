@@ -1,15 +1,12 @@
 package com.example.mgp2023;
 
-// Created by TanSiewLan2021
-
-public interface Collidable
+public interface ICollidableSphere
 {
     String GetType();
-
     float GetPosX();
     float GetPosY();
     float GetRadius();
 
-    void OnHit(Collidable _other);
+    void OnHit(ICollidableSphere _other);
 }
 

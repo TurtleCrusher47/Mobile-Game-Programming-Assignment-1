@@ -23,6 +23,7 @@ public class MainGameSceneState implements StateBase {
 
         // Add more entities
         SmurfEntity.Create();
+        SmurfEntity.Create();
 
         RenderTextEntity.Create();
 
