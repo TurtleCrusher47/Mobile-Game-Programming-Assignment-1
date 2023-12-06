@@ -4,9 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.SurfaceView;
 
-// Created by TanSiewLan2023
-
-public class GameSystem {
+public class GameSystem
+{
     public final static GameSystem Instance = new GameSystem();
 
     // Game stuff

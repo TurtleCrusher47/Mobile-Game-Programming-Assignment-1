@@ -9,8 +9,8 @@ import java.util.LinkedList;
 
 // Created by TanSiewLan2021
 
-public class EntityManager {
-
+public class EntityManager
+{
     public final static EntityManager Instance = new EntityManager();
     private LinkedList<EntityBase> entityList = new LinkedList<EntityBase>();
     private SurfaceView view = null;
@@ -57,19 +57,63 @@ public class EntityManager {
         {
             EntityBase currEntity = entityList.get(i);
 
-            if (currEntity instanceof Collidable)
+            if (currEntity instanceof ICollidableCircle)
             {
-                Collidable first = (Collidable) currEntity;
+                ICollidableCircle first = (ICollidableCircle) currEntity;
+
+                for (int j = i + 1; j < entityList.size(); ++j)
+                {
+                    EntityBase otherEntity = entityList.get(j);
+
+                    // Circle to circle
+                    if (otherEntity instanceof ICollidableCircle)
+                    {
+                        ICollidableCircle second = (ICollidableCircle) otherEntity;
+
+                        if (Collision.CircleToCircle(first.GetPosX(), first.GetPosY(), first.GetRadius(), second.GetPosX(), second.GetPosY(), second.GetRadius()))
+                        {
+                            first.OnHit(second);
+                            second.OnHit(first);
+                        }
+                    }
+                    //Circle to box
+                    else if (otherEntity instanceof ICollidableBox)
+                    {
+                        ICollidableBox second = (ICollidableBox) otherEntity;
+
+                        if (Collision.CircleToBox(first.GetPosX(), first.GetPosY(), first.GetRadius(), second.GetPosX(), second.GetPosY(), second.GetWidth(), second.GetHeight()))
+                        {
+                            first.OnHit(second);
+                            second.OnHit(first);
+                        }
+                    }
+                }
+            }
+            // Box to box
+            else if (currEntity instanceof ICollidableBox)
+            {
+                ICollidableBox first = (ICollidableBox) currEntity;
 
                 for (int j = i+1; j < entityList.size(); ++j)
                 {
                     EntityBase otherEntity = entityList.get(j);
 
-                    if (otherEntity instanceof Collidable)
+                    if (otherEntity instanceof ICollidableBox)
                     {
-                        Collidable second = (Collidable) otherEntity;
+                        ICollidableBox second = (ICollidableBox) otherEntity;
 
-                        if (Collision.SphereToSphere(first.GetPosX(), first.GetPosY(), first.GetRadius(), second.GetPosX(), second.GetPosY(), second.GetRadius()))
+                        if (Collision.BoxToBox(first.GetPosX(), first.GetPosY(), first.GetWidth(), first.GetHeight(), second.GetPosX(), second.GetPosY(), second.GetWidth(), second.GetHeight()))
+                        {
+                            first.OnHit(second);
+                            second.OnHit(first);
+                        }
+                    }
+                    // Box to circle
+                    else if (otherEntity instanceof ICollidableCircle)
+                    {
+                        ICollidableCircle second = (ICollidableCircle) otherEntity;
+
+                        if (Collision.CircleToBox(second.GetPosX(), second.GetPosY(), second.GetRadius(), first.GetPosX(), first.GetPosY(), first.GetWidth(), first.GetHeight()));
                         {
                             first.OnHit(second);
                             second.OnHit(first);

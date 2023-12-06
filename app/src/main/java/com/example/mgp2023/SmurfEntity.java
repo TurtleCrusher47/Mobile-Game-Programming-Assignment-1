@@ -5,13 +5,12 @@ import android.graphics.Canvas;
 import android.view.SurfaceView;
 import java.util.Random;
 
-public class SmurfEntity implements EntityBase, Collidable{
-    
-	 // 1. Declare the use of spritesheet using Sprite class
+public class SmurfEntity implements EntityBase, ICollidableCircle
+{
+	// 1. Declare the use of spritesheet using Sprite class
     // Usual method of loading a bmp / image
     public Bitmap bmp = null;
     public Sprite spritesheet = null;
-
     private boolean isDone = false;
     private boolean isInit = false;
 
@@ -75,7 +74,7 @@ public class SmurfEntity implements EntityBase, Collidable{
 
             // Other than check the finger that touch on the screen, the x, y = the image area hence meant this is the image I want to interact with, we
             // also want to touch and hold and drag this image
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched)
+            if (Collision.CircleToCircle(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched)
             {
                 // Collided
                 hasTouched = true;
@@ -146,18 +145,26 @@ public class SmurfEntity implements EntityBase, Collidable{
     }
 
     @Override
-    public void OnHit(Collidable _other) {
+    public void OnHit(ICollidableCircle _other)
+    {
         // This allows you to check collision between 2 entities.
         // Star Entity can cause harm to the player when hit.
         // If hit by star, you can play an audio, or have a visual feedback or
         // physical feedback.
         // SetIsDone(true) --> allows you to delete the entity from the screen.
 
+        System.out.println("Hit");
         //if (_other.GetType() == "StarEntity") //Another Entity
         {
             //SetIsDone(true);
             //Play an audio
         }
+    }
+
+    @Override
+    public void OnHit(ICollidableBox _other)
+    {
+        System.out.println("Hit");
     }
 
 }
