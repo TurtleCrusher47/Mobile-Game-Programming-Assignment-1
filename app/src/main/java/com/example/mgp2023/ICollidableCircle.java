@@ -8,5 +8,6 @@ public interface ICollidableCircle
     float GetRadius();
 
     void OnHit(ICollidableCircle _other);
+    void OnHit(ICollidableBox _other);
 }
 

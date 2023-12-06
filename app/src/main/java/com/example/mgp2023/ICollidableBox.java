@@ -9,5 +9,6 @@ public interface ICollidableBox
     float GetHeight();
 
     void OnHit(ICollidableBox _other);
+    void OnHit(ICollidableCircle _other);
 }
 

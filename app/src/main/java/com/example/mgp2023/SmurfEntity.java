@@ -11,7 +11,6 @@ public class SmurfEntity implements EntityBase, ICollidableCircle
     // Usual method of loading a bmp / image
     public Bitmap bmp = null;
     public Sprite spritesheet = null;
-
     private boolean isDone = false;
     private boolean isInit = false;
 
@@ -75,7 +74,7 @@ public class SmurfEntity implements EntityBase, ICollidableCircle
 
             // Other than check the finger that touch on the screen, the x, y = the image area hence meant this is the image I want to interact with, we
             // also want to touch and hold and drag this image
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched)
+            if (Collision.CircleToCircle(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched)
             {
                 // Collided
                 hasTouched = true;
@@ -160,6 +159,12 @@ public class SmurfEntity implements EntityBase, ICollidableCircle
             //SetIsDone(true);
             //Play an audio
         }
+    }
+
+    @Override
+    public void OnHit(ICollidableBox _other)
+    {
+        System.out.println("Hit");
     }
 
 }

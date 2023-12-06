@@ -2,7 +2,7 @@ package com.example.mgp2023;
 
 public class Collision
 {
-    public static boolean SphereToSphere(float x1, float y1, float radius1, float x2, float y2, float radius2)
+    public static boolean CircleToCircle(float x1, float y1, float radius1, float x2, float y2, float radius2)
     {
         float xVec = x2 - x1;
         float yVec = y2 - y1;
