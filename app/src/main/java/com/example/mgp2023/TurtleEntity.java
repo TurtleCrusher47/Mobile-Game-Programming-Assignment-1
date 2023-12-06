@@ -3,11 +3,12 @@ package com.example.mgp2023;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
+
 import java.util.Random;
 
-public class SmurfEntity implements EntityBase, Collidable{
-    
-	 // 1. Declare the use of spritesheet using Sprite class
+public class TurtleEntity implements EntityBase, Collidable{
+
+    // 1. Declare the use of spritesheet using Sprite class
     // Usual method of loading a bmp / image
     public Bitmap bmp = null;
     public Sprite spritesheet = null;
@@ -15,10 +16,10 @@ public class SmurfEntity implements EntityBase, Collidable{
     private boolean isDone = false;
     private boolean isInit = false;
 
-	 // Variables to be used or can be used.
+    // Variables to be used or can be used.
     public float xPos, yPos, xDir, yDir, lifeTime;
-    
-	 // For use with the TouchManager.class
+
+    // For use with the TouchManager.class
     private boolean hasTouched = false;
 
     int ScreenWidth, ScreenHeight;
@@ -93,7 +94,7 @@ public class SmurfEntity implements EntityBase, Collidable{
 
     @Override
     public void Render(Canvas _canvas) {
-       
+
         // This is for our sprite animation!
         spritesheet.Render(_canvas, (int)xPos, (int)yPos);
 
@@ -115,19 +116,19 @@ public class SmurfEntity implements EntityBase, Collidable{
         return;
     }
 
-    public static SmurfEntity Create()
+    public static TurtleEntity Create()
     {
-        SmurfEntity result = new SmurfEntity();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_SMURF);
+        TurtleEntity result = new TurtleEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_TURTLE);
         return result;
     }
 
     @Override
-    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_SMURF;}
+    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_TURTLE;}
 
     @Override
     public String GetType() {
-        return "SmurfEntity";
+        return "TurtleEntity";
     }
 
     @Override
