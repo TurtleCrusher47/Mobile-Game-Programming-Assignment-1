@@ -2,17 +2,18 @@ package com.example.mgp2023;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceView;
 
 import java.util.Random;
 
-public class TurtleEntity implements EntityBase, ICollidableBox{
+public class TrashEntity implements EntityBase, ICollidableCircle{
 
     // 1. Declare the use of spritesheet using Sprite class
     // Usual method of loading a bmp / image
-    public Bitmap bmp = null;
-    public Sprite spritesheet = null;
+    public Bitmap bmpP = null;
+    public Bitmap scaledBmpP = null;
 
     private boolean isDone = false;
     private boolean isInit = false;
@@ -20,13 +21,12 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     // Variables to be used or can be used.
     public float xPos, yPos, xDir, yDir, lifeTime;
 
-    float imgWidth;
-    float imgHeight;
+    float imgRadius;
 
     // For use with the TouchManager.class
     private boolean hasTouched = false;
 
-    int ScreenWidth, ScreenHeight;
+    int screenWidth, screenHeight;
 
     @Override
     public boolean IsDone() {
@@ -42,7 +42,14 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     public void Init(SurfaceView _view) {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.burgle_image), 2, 2, 4);
+        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.plasticbag);
+
+        DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
+        screenWidth = metrics.widthPixels;
+        screenHeight = metrics.heightPixels;
+
+        scaledBmpP = Bitmap.createScaledBitmap(bmpP, screenWidth/10, screenHeight/10, true);
+        imgRadius = scaledBmpP.getHeight() * 0.5f;
 
         // If you want to load a certain frame for animation --> SetAnimationFrames(int _start, int _end)
         // spritesheet.SetAnimationFrames(1,15);
@@ -69,38 +76,12 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         if (GameSystem.Instance.GetIsPaused())
             return;
 
-        // 4. Update spritesheet
-        spritesheet.Update(_dt);
-
-        // 5. Deal with the touch on screen for interaction of the image using collision check
-        if (TouchManager.Instance.HasTouch())
-        {
-            // 6. Check collision
-            imgWidth = spritesheet.GetWidth();
-            imgHeight = spritesheet.GetHeight();
-
-            // Other than check the finger that touch on the screen, the x, y = the image area hence meant this is the image I want to interact with, we
-            // also want to touch and hold and drag this image
-            if (Collision.CircleToBox(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgWidth, imgHeight) || hasTouched)
-            {
-                // Collided
-                hasTouched = true;
-
-                // 7. Drag the sprite around the screen
-                xPos = TouchManager.Instance.GetPosX();
-                yPos = TouchManager.Instance.GetPosY();
-
-                xPos += xDir * _dt;
-                yPos += yDir * _dt;
-            }
-        }
     }
 
     @Override
     public void Render(Canvas _canvas) {
 
-        // This is for our sprite animation!
-        spritesheet.Render(_canvas, (int)xPos, (int)yPos);
+        _canvas.drawBitmap(scaledBmpP, xPos - scaledBmpP.getWidth() *0.5f, yPos -scaledBmpP.getHeight() *0.5f, null);
 
     }
 
@@ -111,7 +92,7 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
 
     @Override
     public int GetRenderLayer(){
-        return LayerConstants.TURTLE_LAYER;
+        return LayerConstants.ITEM_LAYER;
     }
 
     @Override
@@ -120,19 +101,19 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         return;
     }
 
-    public static TurtleEntity Create()
+    public static TrashEntity Create()
     {
-        TurtleEntity result = new TurtleEntity();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_TURTLE);
+        TrashEntity result = new TrashEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_TRASH);
         return result;
     }
 
     @Override
-    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_TURTLE;}
+    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_TRASH;}
 
     @Override
     public String GetType() {
-        return "TurtleEntity";
+        return "TrashEntity";
     }
 
     @Override
@@ -146,17 +127,24 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     }
 
     @Override
-    public float GetWidth() { return imgWidth; }
-
-    @Override
-    public float GetHeight() { return imgHeight; }
+    public float GetRadius() { return imgRadius; }
 
     @Override
     public void OnHit(ICollidableBox _other) {
 
+        if (_other.GetType() == "TurtleEntity") //Another Entity
+        {
+            //SetIsDone(true);
+            //Play an audio
+
+            GameSystem.Instance.score += 10;
+            Log.d(TAG, "Collided with" + _other.GetType());
+
+        }
+
     }
 
-    private static final String TAG = "Turtle";
+    private static final String TAG = "Trash";
     @Override
     public void OnHit(ICollidableCircle _other) {
         // This allows you to check collision between 2 entities.
@@ -165,12 +153,14 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         // physical feedback.
         // SetIsDone(true) --> allows you to delete the entity from the screen.
 
-        if (_other.GetType() == "TrashEntity") //Another Entity
+        if (_other.GetType() == "TurtleEntity") //Another Entity
         {
             //SetIsDone(true);
             //Play an audio
-        }
-        //Log.d(TAG, "Turtle Hit");
-    }
 
+            GameSystem.Instance.score += 10;
+            Log.d(TAG, "Collided with" + _other.GetType());
+        }
+        Log.d(TAG, "Trash Hit");
+    }
 }

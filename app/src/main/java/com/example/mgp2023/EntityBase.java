@@ -12,6 +12,7 @@ public interface EntityBase
         ENT_PLAYER,
         ENT_SMURF,
         ENT_TURTLE,
+        ENT_TRASH,
         ENT_PAUSE,
         ENT_TEXT,
         ENT_NEXT,
