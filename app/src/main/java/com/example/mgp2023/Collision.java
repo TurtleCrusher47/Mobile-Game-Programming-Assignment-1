@@ -29,4 +29,23 @@ public class Collision
         }
         return false;
     }
+
+    public static boolean CircleToBox(float circleX, float circleY, float radius, float boxX, float boxY, float boxWidth, float boxHeight)
+    {
+        float distanceX = Math.abs(circleX - boxWidth);
+        float distanceY = Math.abs(circleY - boxHeight);
+
+        if (distanceX > boxWidth / 2 + radius)
+            return false;
+        if (distanceY > boxHeight / 2 + radius)
+            return false;
+
+        if (distanceX <= boxWidth / 2)
+            return true;
+        if (distanceY <= boxHeight / 2)
+            return true;
+
+        float cornerDistanceSquared = ((distanceX - boxWidth / 2) * (distanceX - boxWidth / 2)) + ((distanceY - boxHeight / 2) * (distanceY - boxHeight / 2));
+        return (cornerDistanceSquared <= (radius * radius));
+    }
 }
