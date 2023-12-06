@@ -5,7 +5,8 @@ public interface ICollidableBox
     String GetType();
     float GetPosX();
     float GetPosY();
-    float GetRadius();
+    float GetWidth();
+    float GetHeight();
 
     void OnHit(ICollidableBox _other);
 }
