@@ -12,6 +12,8 @@ public class GameSystem {
     // Game stuff
     private boolean isPaused = false;
 
+    public int score = 0;
+
     // Singleton Pattern : Blocks others from creating
     private GameSystem()
     {
