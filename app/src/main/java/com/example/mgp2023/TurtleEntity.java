@@ -2,6 +2,7 @@ package com.example.mgp2023;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceView;
 
@@ -29,7 +30,7 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     // For use with the TouchManager.class
     private boolean hasTouched = false;
 
-    int ScreenWidth, ScreenHeight;
+    int screenWidth, screenHeight;
 
     @Override
     public boolean IsDone() {
@@ -55,13 +56,25 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         // Random generator under the java utility library
         Random ranGen = new Random();
 
-        xPos = ranGen.nextFloat() * _view.getWidth();
-        yPos = ranGen.nextFloat() * _view.getHeight();
+        //xPos = ranGen.nextFloat() * _view.getWidth();
+        //yPos = ranGen.nextFloat() * _view.getHeight();
+
+        DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
+        screenWidth = metrics.widthPixels;
+        screenHeight = metrics.heightPixels;
+
+
+        xPos = 100;
+        yPos = screenHeight / 2;
 
         xDir = ranGen.nextFloat() * 100.0f - 50.0f;
         yDir = ranGen.nextFloat() * 100.0f - 50.0f;
 
+        imgWidth = spritesheet.GetWidth()/2;
+        imgHeight = spritesheet.GetHeight()/2;
 
+        Log.d(TAG, " turtle width: " + imgWidth);
+        Log.d(TAG, " turtle height: " + imgHeight);
 
         isInit = true;
 
@@ -171,15 +184,12 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     @Override
     public void OnHit(ICollidableCircle _other) {
         // This allows you to check collision between 2 entities.
-        // Star Entity can cause harm to the player when hit.
-        // If hit by star, you can play an audio, or have a visual feedback or
-        // physical feedback.
         // SetIsDone(true) --> allows you to delete the entity from the screen.
 
         if (_other.GetType() == "TrashEntity") //Another Entity
         {
-            //SetIsDone(true);
             //Play an audio
+            GameSystem.Instance.score += 10;
         }
         //Log.d(TAG, "Turtle Hit");
     }

@@ -53,6 +53,8 @@ public class TrashEntity implements EntityBase, ICollidableCircle
         scaledBmpP = Bitmap.createScaledBitmap(bmpP, screenWidth/10, screenHeight/10, true);
         imgRadius = scaledBmpP.getHeight() * 0.5f;
 
+        Log.d(TAG, "Radius: " + imgRadius);
+
         // If you want to load a certain frame for animation --> SetAnimationFrames(int _start, int _end)
         // spritesheet.SetAnimationFrames(1,15);
 
@@ -136,12 +138,7 @@ public class TrashEntity implements EntityBase, ICollidableCircle
 
         if (_other.GetType() == "TurtleEntity") //Another Entity
         {
-            //SetIsDone(true);
-            //Play an audio
-
-            GameSystem.Instance.score += 10;
-//            Log.d(TAG, "Collided with" + _other.GetType());
-
+            SetIsDone(true);
         }
 
     }
@@ -163,6 +160,5 @@ public class TrashEntity implements EntityBase, ICollidableCircle
             GameSystem.Instance.score += 10;
 //            Log.d(TAG, "Collided with" + _other.GetType());
         }
-        Log.d(TAG, "Trash Hit");
     }
 }

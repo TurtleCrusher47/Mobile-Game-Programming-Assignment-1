@@ -77,7 +77,7 @@ public class JoystickEntity implements EntityBase {
             {
                 SetActuator((double)TouchManager.Instance.GetPosX(), (double) TouchManager.Instance.GetPosY());
 
-                System.out.println("Move");
+                //System.out.println("Move");
             }
         }
         if (TouchManager.Instance.IsUp())
@@ -85,7 +85,7 @@ public class JoystickEntity implements EntityBase {
             isPressed = false;
             ResetActuator();
 
-            System.out.println("Up");
+            //System.out.println("Up");
         }
     }
 
