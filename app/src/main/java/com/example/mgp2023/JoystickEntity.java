@@ -34,7 +34,7 @@ public class JoystickEntity implements EntityBase {
         outerCirclePaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         innerCirclePaint = new Paint();
-        innerCirclePaint.setColor(Color.GRAY);
+        innerCirclePaint.setColor(Color.BLUE);
         innerCirclePaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
     @Override
@@ -81,7 +81,7 @@ public class JoystickEntity implements EntityBase {
 
     public static JoystickEntity Create()
     {
-        JoystickEntity result = new JoystickEntity(275, 350, 70, 40);
+        JoystickEntity result = new JoystickEntity(275, 700, 70, 40);
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_JOYSTICK);
         return result;
     }
