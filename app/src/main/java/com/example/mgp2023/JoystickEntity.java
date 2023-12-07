@@ -1,13 +1,41 @@
 package com.example.mgp2023;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.SurfaceView;
 
 public class JoystickEntity implements EntityBase {
 
-    public JoystickEntity()
+    private int outerCircleRadius;
+    private int innerCircleRadius;
+    private int outerCircleCenterPositionX;
+    private int outerCircleCenterPositionY;
+    private int innerCircleCenterPositionX;
+    private int innerCircleCenterPositionY;
+    private final Paint outerCirclePaint;
+    private final Paint innerCirclePaint;
+
+    public JoystickEntity(int centerPositionX, int centerPositionY, int outerCircleRadius, int innerCircleRadius)
     {
-        
+        // Outer and inner circle that make up the joystick
+        outerCircleCenterPositionX = centerPositionX;
+        outerCircleCenterPositionY = centerPositionY;
+        innerCircleCenterPositionX = centerPositionX;
+        innerCircleCenterPositionY = centerPositionY;
+
+        // Radii of circles
+        this.outerCircleRadius = outerCircleRadius;
+        this.innerCircleRadius = innerCircleRadius;
+
+        // Paint of circles
+        outerCirclePaint = new Paint();
+        outerCirclePaint.setColor(Color.GRAY);
+        outerCirclePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+
+        innerCirclePaint = new Paint();
+        innerCirclePaint.setColor(Color.GRAY);
+        innerCirclePaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
     @Override
     public boolean IsDone() {
@@ -31,7 +59,9 @@ public class JoystickEntity implements EntityBase {
 
     @Override
     public void Render(Canvas _canvas) {
+        _canvas.drawCircle(outerCircleCenterPositionX, outerCircleCenterPositionY, outerCircleRadius, outerCirclePaint);
 
+        _canvas.drawCircle(innerCircleCenterPositionX, innerCircleCenterPositionY, innerCircleRadius, innerCirclePaint);
     }
 
     @Override
@@ -47,6 +77,13 @@ public class JoystickEntity implements EntityBase {
     @Override
     public void SetRenderLayer(int _newLayer) {
 
+    }
+
+    public static JoystickEntity Create()
+    {
+        JoystickEntity result = new JoystickEntity(275, 350, 70, 40);
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_JOYSTICK);
+        return result;
     }
 
     @Override

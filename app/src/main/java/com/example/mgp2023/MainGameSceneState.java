@@ -22,6 +22,8 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
 
         // Add more entities
+        JoystickEntity.Create();
+
         TurtleEntity.Create();
 
         TrashEntity.Create();
