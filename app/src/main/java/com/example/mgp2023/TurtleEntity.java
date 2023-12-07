@@ -8,7 +8,8 @@ import android.view.SurfaceView;
 import java.util.Random;
 
 public class TurtleEntity implements EntityBase, ICollidableBox{
-
+    private static final double SPEED_PIXELS_PER_SECOND = 400.0;
+    private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / UpdateThread.targetFPS;
     // 1. Declare the use of spritesheet using Sprite class
     // Usual method of loading a bmp / image
     public Bitmap bmp = null;
@@ -75,6 +76,11 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         // 4. Update spritesheet
         spritesheet.Update(_dt);
 
+        velocityX = GameSystem.Instance.actuatorX * MAX_SPEED;
+        velocityY = GameSystem.Instance.actuatorY * MAX_SPEED;
+
+        xPos += velocityX;
+        yPos += velocityY;
 //        MainGameSceneState.joystickEntity
 
         // 5. Deal with the touch on screen for interaction of the image using collision check

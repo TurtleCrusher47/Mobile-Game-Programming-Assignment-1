@@ -10,6 +10,8 @@ public class GameSystem
 
     // Game stuff
     private boolean isPaused = false;
+    public double actuatorX;
+    public double actuatorY;
 
     public int score = 0;
 

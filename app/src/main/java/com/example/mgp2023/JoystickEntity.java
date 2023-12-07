@@ -17,8 +17,6 @@ public class JoystickEntity implements EntityBase {
     private int innerCircleCenterPositionY;
     private final Paint outerCirclePaint;
     private final Paint innerCirclePaint;
-    private double actuatorX;
-    private double actuatorY;
     private double joystickCenterToTouchDistance;
 
     private boolean isPressed = false;
@@ -115,8 +113,8 @@ public class JoystickEntity implements EntityBase {
 
     private void UpdateInnerCirclePosition()
     {
-        innerCircleCenterPositionX = (int) (outerCircleCenterPositionX + actuatorX * outerCircleRadius);
-        innerCircleCenterPositionY = (int) (outerCircleCenterPositionY + actuatorY * outerCircleRadius);
+        innerCircleCenterPositionX = (int) (outerCircleCenterPositionX + GameSystem.Instance.actuatorX * outerCircleRadius);
+        innerCircleCenterPositionY = (int) (outerCircleCenterPositionY + GameSystem.Instance.actuatorY * outerCircleRadius);
     }
 
     public boolean IsPressed(double touchPositionX, double touchPositionY)
@@ -146,20 +144,20 @@ public class JoystickEntity implements EntityBase {
 
         if(deltaDistance < outerCircleRadius)
         {
-            actuatorX = deltaX / outerCircleRadius;
-            actuatorY = deltaY / outerCircleRadius;
+            GameSystem.Instance.actuatorX = deltaX / outerCircleRadius;
+            GameSystem.Instance.actuatorY = deltaY / outerCircleRadius;
         }
         else
         {
-            actuatorX = deltaX / deltaDistance;
-            actuatorY = deltaY / deltaDistance;
+            GameSystem.Instance.actuatorX = deltaX / deltaDistance;
+            GameSystem.Instance.actuatorY = deltaY / deltaDistance;
         }
     }
 
     public void ResetActuator()
     {
-        actuatorX = 0.0;
-        actuatorY = 0.0;
+        GameSystem.Instance.actuatorX = 0.0;
+        GameSystem.Instance.actuatorY = 0.0;
     }
 
     public static JoystickEntity Create()
