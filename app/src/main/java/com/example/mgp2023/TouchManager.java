@@ -22,8 +22,13 @@ public class TouchManager {
     private int posX, posY;
     private TouchState status = TouchState.NONE; //Set to default as NONE
 
-    public boolean HasTouch(){  // Check for a touch status on screen
+    // Check for a touch status on screen
+    public boolean HasTouch(){
         return status == TouchState.DOWN || status == TouchState.MOVE;
+    }
+
+    public boolean HasMove() {
+        return status == TouchState.MOVE;
     }
 
     public boolean IsDown(){

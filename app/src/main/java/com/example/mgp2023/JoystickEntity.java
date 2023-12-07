@@ -16,6 +16,8 @@ public class JoystickEntity implements EntityBase {
     private final Paint outerCirclePaint;
     private final Paint innerCirclePaint;
 
+    private boolean isPressed = false;
+
     public JoystickEntity(int centerPositionX, int centerPositionY, int outerCircleRadius, int innerCircleRadius)
     {
         // Outer and inner circle that make up the joystick
@@ -54,7 +56,15 @@ public class JoystickEntity implements EntityBase {
 
     @Override
     public void Update(float _dt) {
-
+        if (TouchManager.Instance.IsDown())
+        {
+            if (Collision.CircleToCircle(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, outerCircleCenterPositionX, outerCircleCenterPositionY, outerCircleRadius) || isPressed)
+                isPressed = true;
+        }
+        else if (TouchManager.Instance.HasMove())
+        {
+            
+        }
     }
 
     @Override
