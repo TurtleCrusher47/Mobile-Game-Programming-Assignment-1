@@ -35,6 +35,11 @@ public class TouchManager {
         return status == TouchState.DOWN;
     }
 
+    public boolean IsUp()
+    {
+        return status == TouchState.NONE;
+    }
+
     public int GetPosX(){
         return posX;
     }

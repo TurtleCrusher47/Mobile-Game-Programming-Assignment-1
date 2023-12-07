@@ -3,6 +3,7 @@ package com.example.mgp2023;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
 
 public class JoystickEntity implements EntityBase {
@@ -15,6 +16,9 @@ public class JoystickEntity implements EntityBase {
     private int innerCircleCenterPositionY;
     private final Paint outerCirclePaint;
     private final Paint innerCirclePaint;
+    private double actuatorX;
+    private double actuatorY;
+    private double joystickCenterToTouchDistance;
 
     private boolean isPressed = false;
 
@@ -55,15 +59,34 @@ public class JoystickEntity implements EntityBase {
     }
 
     @Override
-    public void Update(float _dt) {
+    public void Update(float _dt)
+    {
+        UpdateInnerCirclePosition();
+        
         if (TouchManager.Instance.IsDown())
         {
-            if (Collision.CircleToCircle(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, outerCircleCenterPositionX, outerCircleCenterPositionY, outerCircleRadius) || isPressed)
+            if (IsPressed((double) TouchManager.Instance.GetPosX(), (double) TouchManager.Instance.GetPosY()))
+            {
                 isPressed = true;
+
+                System.out.println("Down");
+            }
         }
-        else if (TouchManager.Instance.HasMove())
+        if (TouchManager.Instance.HasMove())
         {
-            
+            if (GetIsPressed())
+            {
+                SetActuator((double)TouchManager.Instance.GetPosX(), (double) TouchManager.Instance.GetPosY());
+
+                System.out.println("Move");
+            }
+        }
+        if (TouchManager.Instance.IsUp())
+        {
+            isPressed = false;
+            ResetActuator();
+
+            System.out.println("Up");
         }
     }
 
@@ -87,6 +110,55 @@ public class JoystickEntity implements EntityBase {
     @Override
     public void SetRenderLayer(int _newLayer) {
 
+    }
+
+    private void UpdateInnerCirclePosition()
+    {
+        innerCircleCenterPositionX = (int) (outerCircleCenterPositionX + actuatorX * outerCircleRadius);
+        innerCircleCenterPositionY = (int) (outerCircleCenterPositionY + actuatorY * outerCircleRadius);
+    }
+
+    public boolean IsPressed(double touchPositionX, double touchPositionY)
+    {
+        joystickCenterToTouchDistance = Math.sqrt(
+                Math.pow(outerCircleCenterPositionX - TouchManager.Instance.GetPosX(), 2) +
+                Math.pow(outerCircleCenterPositionY - TouchManager.Instance.GetPosY(), 2)
+        );
+        return joystickCenterToTouchDistance < outerCircleRadius;
+    }
+
+    public void SetIsPressed(boolean isPressed)
+    {
+        this.isPressed = isPressed;
+    }
+
+    public boolean GetIsPressed()
+    {
+        return isPressed;
+    }
+
+    public void SetActuator(double touchPositionX, double touchPositionY)
+    {
+        double deltaX = touchPositionX - outerCircleCenterPositionX;
+        double deltaY = touchPositionY - outerCircleCenterPositionY;
+        double deltaDistance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+
+        if(deltaDistance < outerCircleRadius)
+        {
+            actuatorX = deltaX / outerCircleRadius;
+            actuatorY = deltaY / outerCircleRadius;
+        }
+        else
+        {
+            actuatorX = deltaX / deltaDistance;
+            actuatorY = deltaY / deltaDistance;
+        }
+    }
+
+    public void ResetActuator()
+    {
+        actuatorX = 0.0;
+        actuatorY = 0.0;
     }
 
     public static JoystickEntity Create()
