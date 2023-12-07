@@ -8,7 +8,8 @@ import android.view.SurfaceView;
 
 import java.util.Random;
 
-public class TrashEntity implements EntityBase, ICollidableCircle{
+public class TrashEntity implements EntityBase, ICollidableCircle
+{
 
     // 1. Declare the use of spritesheet using Sprite class
     // Usual method of loading a bmp / image
@@ -39,7 +40,8 @@ public class TrashEntity implements EntityBase, ICollidableCircle{
     }
 
     @Override
-    public void Init(SurfaceView _view) {
+    public void Init(SurfaceView _view)
+    {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
         bmpP = ResourceManager.Instance.GetBitmap(R.drawable.plasticbag);
@@ -138,7 +140,7 @@ public class TrashEntity implements EntityBase, ICollidableCircle{
             //Play an audio
 
             GameSystem.Instance.score += 10;
-            Log.d(TAG, "Collided with" + _other.GetType());
+//            Log.d(TAG, "Collided with" + _other.GetType());
 
         }
 
@@ -159,7 +161,7 @@ public class TrashEntity implements EntityBase, ICollidableCircle{
             //Play an audio
 
             GameSystem.Instance.score += 10;
-            Log.d(TAG, "Collided with" + _other.GetType());
+//            Log.d(TAG, "Collided with" + _other.GetType());
         }
         Log.d(TAG, "Trash Hit");
     }

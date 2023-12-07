@@ -83,6 +83,8 @@ public class EntityManager
 
                         if (Collision.CircleToBox(first.GetPosX(), first.GetPosY(), first.GetRadius(), second.GetPosX(), second.GetPosY(), second.GetWidth(), second.GetHeight()))
                         {
+                            System.out.println("radius " + first.GetRadius());
+                            System.out.println("width " + second.GetWidth() + "height " + second.GetHeight());
                             first.OnHit(second);
                             second.OnHit(first);
                         }
@@ -115,6 +117,8 @@ public class EntityManager
 
                         if (Collision.CircleToBox(second.GetPosX(), second.GetPosY(), second.GetRadius(), first.GetPosX(), first.GetPosY(), first.GetWidth(), first.GetHeight()));
                         {
+                            System.out.println("radius " + second.GetRadius());
+                            System.out.println("width " + first.GetWidth() + "height " + first.GetHeight());
                             first.OnHit(second);
                             second.OnHit(first);
                         }

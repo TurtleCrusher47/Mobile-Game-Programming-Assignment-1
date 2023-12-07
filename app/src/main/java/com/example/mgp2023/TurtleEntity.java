@@ -39,7 +39,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     }
 
     @Override
-    public void Init(SurfaceView _view) {
+    public void Init(SurfaceView _view)
+    {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.burgle_image), 2, 2, 4);
