@@ -9,7 +9,6 @@ import android.view.SurfaceView;
 
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
-
     @Override
     public String GetName() {
         return "MainGame";

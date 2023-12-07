@@ -19,6 +19,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
 
     // Variables to be used or can be used.
     public float xPos, yPos, xDir, yDir, lifeTime;
+    private double velocityX;
+    private double velocityY;
 
     float imgWidth;
     float imgHeight;
@@ -73,28 +75,30 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         // 4. Update spritesheet
         spritesheet.Update(_dt);
 
+//        MainGameSceneState.joystickEntity
+
         // 5. Deal with the touch on screen for interaction of the image using collision check
-        if (TouchManager.Instance.HasTouch())
-        {
-            // 6. Check collision
-            imgWidth = spritesheet.GetWidth();
-            imgHeight = spritesheet.GetHeight();
-
-            // Other than check the finger that touch on the screen, the x, y = the image area hence meant this is the image I want to interact with, we
-            // also want to touch and hold and drag this image
-            if (Collision.CircleToBox(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgWidth, imgHeight) || hasTouched)
-            {
-                // Collided
-                hasTouched = true;
-
-                // 7. Drag the sprite around the screen
-                xPos = TouchManager.Instance.GetPosX();
-                yPos = TouchManager.Instance.GetPosY();
-
-                xPos += xDir * _dt;
-                yPos += yDir * _dt;
-            }
-        }
+//        if (TouchManager.Instance.HasTouch())
+//        {
+//            // 6. Check collision
+//            imgWidth = spritesheet.GetWidth();
+//            imgHeight = spritesheet.GetHeight();
+//
+//            // Other than check the finger that touch on the screen, the x, y = the image area hence meant this is the image I want to interact with, we
+//            // also want to touch and hold and drag this image
+//            if (Collision.CircleToBox(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgWidth, imgHeight) || hasTouched)
+//            {
+//                // Collided
+//                hasTouched = true;
+//
+//                // 7. Drag the sprite around the screen
+//                xPos = TouchManager.Instance.GetPosX();
+//                yPos = TouchManager.Instance.GetPosY();
+//
+//                xPos += xDir * _dt;
+//                yPos += yDir * _dt;
+//            }
+//        }
     }
 
     @Override

@@ -8,6 +8,7 @@ import android.view.SurfaceView;
 
 public class JoystickEntity implements EntityBase {
 
+//    public final static JoystickEntity Instance = new JoystickEntity();
     private int outerCircleRadius;
     private int innerCircleRadius;
     private int outerCircleCenterPositionX;
@@ -62,7 +63,7 @@ public class JoystickEntity implements EntityBase {
     public void Update(float _dt)
     {
         UpdateInnerCirclePosition();
-        
+
         if (TouchManager.Instance.IsDown())
         {
             if (IsPressed((double) TouchManager.Instance.GetPosX(), (double) TouchManager.Instance.GetPosY()))
