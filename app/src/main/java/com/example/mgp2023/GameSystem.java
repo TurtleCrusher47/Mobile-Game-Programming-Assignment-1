@@ -10,6 +10,7 @@ public class GameSystem
 
     // Game stuff
     private boolean isPaused = false;
+    public boolean isLost = false;
     public double actuatorX;
     public double actuatorY;
 
@@ -39,6 +40,7 @@ public class GameSystem
 
         // Please add state, MainGameSceneState.
         StateManager.Instance.AddState(new MainGameSceneState());
+        StateManager.Instance.AddState(new LoseScreen());
 
         score = 0;
         health = 3;
