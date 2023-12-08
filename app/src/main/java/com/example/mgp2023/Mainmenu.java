@@ -27,8 +27,8 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
         btn_start = (Button) findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this);
         // Set Listener to this button --> Start Button
-        btn_back = (Button) findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(this);
+//        btn_back = (Button) findViewById(R.id.btn_back);
+//        btn_back.setOnClickListener(this);
         // Set Listener to this button --> Back Button
 
         btn_quit = (Button) findViewById(R.id.btn_quit);
