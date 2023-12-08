@@ -17,6 +17,7 @@ public interface EntityBase
         ENT_SPIKE,
         ENT_PAUSE,
         ENT_TEXT,
+        ENT_HEART,
         ENT_NEXT,
         ENT_DEFAULT,
     }

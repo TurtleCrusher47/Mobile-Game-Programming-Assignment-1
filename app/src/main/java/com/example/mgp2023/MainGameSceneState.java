@@ -9,6 +9,8 @@ import android.view.SurfaceView;
 
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
+
+    HeartUIEntity heart1, heart2, heart3;
     @Override
     public String GetName() {
         return "MainGame";
@@ -26,6 +28,10 @@ public class MainGameSceneState implements StateBase {
         TurtleEntity.Create();
 
         TrashEntity.Create();
+
+        heart1 = HeartUIEntity.Create(80, 80);
+        heart2 = HeartUIEntity.Create(200, 80);
+        heart3 = HeartUIEntity.Create(320, 80);
 
         SpikeEntity.Create();
 
@@ -57,6 +63,21 @@ public class MainGameSceneState implements StateBase {
     {
 
         EntityManager.Instance.Update(_dt );
+
+        if (GameSystem.Instance.health < 3)
+        {
+            heart3.SetIsShown(false);
+        }
+
+        if (GameSystem.Instance.health < 2)
+        {
+            heart2.SetIsShown(false);
+        }
+
+        if (GameSystem.Instance.health < 1)
+        {
+            heart1.SetIsShown(false);
+        }
 
 //        if (TouchManager.Instance.IsDown())
 //        {
