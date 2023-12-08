@@ -29,7 +29,7 @@ public class RenderBackground implements EntityBase {
     @Override
     public void Init(SurfaceView _view){
         //Load image from the resource
-        bmp = BitmapFactory.decodeResource(_view.getResources(),R.drawable.gamescene);
+        bmp = BitmapFactory.decodeResource(_view.getResources(),R.drawable.oceanbackground);
 
         //Screen Size
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
@@ -45,10 +45,10 @@ public class RenderBackground implements EntityBase {
             return;
 
         //Scrolling background horizontally.
-        xPos -= _dt * 500; // To deal with the speed of the scrolling.
-        if(xPos < -ScreenWidth){
-            xPos = 0;
-        }
+//        xPos -= _dt * 50;
+//        if(xPos < -ScreenWidth - 2){
+//            xPos = 0;
+//        }
         //Check if xPos is decreased - screenwidth
         //if so, set xPos to 0, then can start to render the next image.
         //Scrollable background.
