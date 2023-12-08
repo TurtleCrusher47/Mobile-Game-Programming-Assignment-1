@@ -39,6 +39,7 @@ public class GameSystem
 
         // Please add state, MainGameSceneState.
         StateManager.Instance.AddState(new MainGameSceneState());
+        StateManager.Instance.AddState(new LoseScreen());
 
         score = 0;
         health = 3;
