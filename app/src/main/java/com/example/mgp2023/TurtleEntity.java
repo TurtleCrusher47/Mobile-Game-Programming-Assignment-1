@@ -209,6 +209,9 @@ public class TurtleEntity implements EntityBase, ICollidableBox
                 canTakeDamage = false;
                 GameSystem.Instance.health -= 1;
 
+                xPos = 100;
+                yPos = screenHeight / 2;
+
                 AudioManager.Instance.PlayAudio(R.raw.hurt, 2.0f);
 
                 StartVibrate();
