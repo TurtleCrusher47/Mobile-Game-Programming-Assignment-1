@@ -25,19 +25,21 @@ public class GamePage extends FragmentActivity
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
-        // WE are hijacking the touch event into our own system
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-
-        TouchManager.Instance.Update(x, y, event.getAction());
-
         if (GameSystem.Instance.isLost)
         {
             Intent intent = new Intent(GamePage.this, LoseScreen.class);
             StateManager.Instance.ChangeState("LoseScreen");
 
             startActivity(intent);
+
+            return true;
         }
+
+        // WE are hijacking the touch event into our own system
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+
+        TouchManager.Instance.Update(x, y, event.getAction());
 
         return true;
     }

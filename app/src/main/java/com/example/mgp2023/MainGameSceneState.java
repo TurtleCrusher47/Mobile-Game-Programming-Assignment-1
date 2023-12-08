@@ -21,6 +21,12 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnEnter(SurfaceView _view)
     {
+        GameSystem.Instance.isLost = false;
+        GameSystem.Instance.score = 0;
+        GameSystem.Instance.health = 3;
+        GameSystem.Instance.actuatorX = 0;
+        GameSystem.Instance.actuatorY = 0;
+
         // 3. Create Background
         RenderBackground.Create();
 
@@ -70,6 +76,7 @@ public class MainGameSceneState implements StateBase {
         {
             GameSystem.Instance.isLost = true;
 
+            return;
         }
 
         EntityManager.Instance.Update(_dt );
