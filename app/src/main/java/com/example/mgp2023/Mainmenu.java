@@ -12,7 +12,6 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
 {
     public static Mainmenu Instance = null;
 
-    //Define buttons. We have 2 buttons. Start and Back
     private Button btn_start;
     private Button btn_back;
     private Button btn_quit;
