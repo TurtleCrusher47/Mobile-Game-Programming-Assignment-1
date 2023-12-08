@@ -36,6 +36,9 @@ public class TurtleEntity implements EntityBase, ICollidableBox
     // For use with the TouchManager.class
     private boolean hasTouched = false;
 
+    private boolean canTakeDamage = true;
+    private float damageTimer = 0;
+
     int screenWidth, screenHeight;
     private static final String TAG = "Turtle";
 
@@ -104,6 +107,17 @@ public class TurtleEntity implements EntityBase, ICollidableBox
 
         xPos += velocityX;
         yPos += velocityY;
+
+        if (!canTakeDamage)
+        {
+            damageTimer += _dt;
+
+            if (damageTimer >= 2f)
+            {
+                canTakeDamage = true;
+                damageTimer = 0;
+            }
+        }
 //        MainGameSceneState.joystickEntity
 
         // 5. Deal with the touch on screen for interaction of the image using collision check
@@ -190,10 +204,14 @@ public class TurtleEntity implements EntityBase, ICollidableBox
 
         if (_other.GetType() == "SpikeEntity") //Another Entity
         {
-            //Play an audio
-            GameSystem.Instance.health -= 1;
+            if (canTakeDamage)
+            {
+                canTakeDamage = false;
+                GameSystem.Instance.health -= 1;
 
-            StartVibrate();
+                StartVibrate();
+            }
+
         }
 
     }
