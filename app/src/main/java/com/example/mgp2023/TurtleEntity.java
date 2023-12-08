@@ -31,6 +31,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     private boolean hasTouched = false;
 
     int screenWidth, screenHeight;
+    private static final String TAG = "Turtle";
+
 
     @Override
     public boolean IsDone() {
@@ -70,8 +72,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         xDir = ranGen.nextFloat() * 100.0f - 50.0f;
         yDir = ranGen.nextFloat() * 100.0f - 50.0f;
 
-        imgWidth = spritesheet.GetWidth()/2;
-        imgHeight = spritesheet.GetHeight()/2;
+        imgWidth = spritesheet.GetWidth()/2 - 80;
+        imgHeight = spritesheet.GetHeight()/6;
 
         Log.d(TAG, " turtle width: " + imgWidth);
         Log.d(TAG, " turtle height: " + imgHeight);
@@ -178,9 +180,13 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     @Override
     public void OnHit(ICollidableBox _other) {
 
-    }
+        if (_other.GetType() == "SpikeEntity") //Another Entity
+        {
+            //Play an audio
+            GameSystem.Instance.health -= 1;
+        }
 
-    private static final String TAG = "Turtle";
+    }
     @Override
     public void OnHit(ICollidableCircle _other) {
         // This allows you to check collision between 2 entities.

@@ -3,13 +3,12 @@ package com.example.mgp2023;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.SurfaceView;
 
 import java.util.Random;
 
-public class TrashEntity implements EntityBase, ICollidableCircle
-{
+public class SpikeEntity implements EntityBase, ICollidableBox{
+
     // Usual method of loading a bmp / image
     public Bitmap bmpP = null;
     public Bitmap scaledBmpP = null;
@@ -20,10 +19,10 @@ public class TrashEntity implements EntityBase, ICollidableCircle
     // Variables to be used or can be used.
     public float xPos, yPos;
 
-    float imgRadius;
+    float imgWidth, imgHeight;
 
     int screenWidth, screenHeight;
-    private static final String TAG = "Trash";
+    private static final String TAG = "Spike";
 
 
     @Override
@@ -40,14 +39,17 @@ public class TrashEntity implements EntityBase, ICollidableCircle
     public void Init(SurfaceView _view)
     {
         // New method using our own resource manager : Returns pre-loaded one if exists
-        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.plasticbag);
+        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.spike);
 
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
 
         scaledBmpP = Bitmap.createScaledBitmap(bmpP, screenWidth/10, screenWidth/10, true);
-        imgRadius = scaledBmpP.getHeight() * 0.5f;
+
+        imgWidth = screenWidth/12;
+        imgHeight = screenWidth/12 - 80;
+
 
         // 3. Get some random position of x and y
         // Random generator under the java utility library
@@ -91,19 +93,19 @@ public class TrashEntity implements EntityBase, ICollidableCircle
         return;
     }
 
-    public static TrashEntity Create()
+    public static SpikeEntity Create()
     {
-        TrashEntity result = new TrashEntity();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_TRASH);
+        SpikeEntity result = new SpikeEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_SPIKE);
         return result;
     }
 
     @Override
-    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_TRASH;}
+    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_SPIKE;}
 
     @Override
     public String GetType() {
-        return "TrashEntity";
+        return "SpikeEntity";
     }
 
     @Override
@@ -117,15 +119,11 @@ public class TrashEntity implements EntityBase, ICollidableCircle
     }
 
     @Override
-    public float GetRadius() { return imgRadius; }
+    public float GetWidth(){ return imgWidth; }
+    public float GetHeight(){ return imgHeight; }
 
     @Override
     public void OnHit(ICollidableBox _other) {
-
-        if (_other.GetType() == "TurtleEntity") //Another Entity
-        {
-            SetIsDone(true);
-        }
 
     }
 

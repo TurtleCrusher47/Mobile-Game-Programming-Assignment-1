@@ -14,6 +14,7 @@ public interface EntityBase
         ENT_SMURF,
         ENT_TURTLE,
         ENT_TRASH,
+        ENT_SPIKE,
         ENT_PAUSE,
         ENT_TEXT,
         ENT_NEXT,

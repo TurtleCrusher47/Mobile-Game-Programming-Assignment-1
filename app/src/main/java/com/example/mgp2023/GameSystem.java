@@ -15,6 +15,8 @@ public class GameSystem
 
     public int score = 0;
 
+    public int health = 0;
+
     // Singleton Pattern : Blocks others from creating
     private GameSystem()
     {
@@ -38,7 +40,8 @@ public class GameSystem
         // Please add state, MainGameSceneState.
         StateManager.Instance.AddState(new MainGameSceneState());
 
-
+        score = 0;
+        health = 3;
     }
 
     public void SetIsPaused(boolean _newIsPaused)
