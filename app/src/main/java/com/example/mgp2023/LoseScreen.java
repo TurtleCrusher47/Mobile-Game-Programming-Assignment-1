@@ -55,8 +55,8 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
         }
         else if (view == btn_quit)
         {
-            intent.setClass(this, Nextpage.class);
-            StateManager.Instance.ChangeState("NextPage");
+            finish();
+            System.exit(0);
         }
         startActivity(intent);
     }
