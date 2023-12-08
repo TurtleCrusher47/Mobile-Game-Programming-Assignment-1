@@ -162,7 +162,7 @@ public class JoystickEntity implements EntityBase {
 
     public static JoystickEntity Create()
     {
-        JoystickEntity result = new JoystickEntity(275, 700, 70, 40);
+        JoystickEntity result = new JoystickEntity(175, 800, 70, 40);
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_JOYSTICK);
         return result;
     }
