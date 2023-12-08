@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 
 public class LoseScreen extends Activity implements OnClickListener, StateBase
 {
+    public static LoseScreen Instance = null;
     private Button btn_restart;
     private Button btn_quit;
 
@@ -22,7 +23,7 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
         setContentView(R.layout.losescreen);
 
         btn_restart = (Button) findViewById(R.id.btn_restart);
-        btn_start.setOnClickListener(this);
+        btn_restart.setOnClickListener(this);
         // Set Listener to this button --> Start Button
 //        btn_back = (Button) findViewById(R.id.btn_back);
 //        btn_back.setOnClickListener(this);
@@ -32,23 +33,37 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
         btn_quit.setOnClickListener(this);
 
         // Make this known to the StateManager
-        StateManager.Instance.AddState(new Mainmenu());
+        StateManager.Instance.AddState(new LoseScreen());
 
         Instance = this;
 
         StateManager.Instance.Init(new SurfaceView(this));
         GameSystem.Instance.Init(new SurfaceView(this));
-        StateManager.Instance.Start("MainMenu");
+        StateManager.Instance.Start("LoseScreen");
     }
 
     @Override
     public void onClick(View view) {
-
+        Intent intent = new Intent();
+        if (view == btn_restart)
+        {
+            //intent -> to set to another class which is another page or screen to be
+            //launch.
+            //Equal to change screen
+            intent.setClass(this, GamePage.class);
+            StateManager.Instance.ChangeState("MainGame");
+        }
+        else if (view == btn_quit)
+        {
+            intent.setClass(this, Nextpage.class);
+            StateManager.Instance.ChangeState("NextPage");
+        }
+        startActivity(intent);
     }
 
     @Override
     public String GetName() {
-        return null;
+        return "LoseScreen";
     }
 
     @Override
