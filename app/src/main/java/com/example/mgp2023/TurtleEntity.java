@@ -197,8 +197,6 @@ public class TurtleEntity implements EntityBase, ICollidableBox
         }
 
     }
-
-    }
     @Override
     public void OnHit(ICollidableCircle _other) {
         // This allows you to check collision between 2 entities.
