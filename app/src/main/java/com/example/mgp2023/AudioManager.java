@@ -26,7 +26,7 @@ public class AudioManager {
         Release();
     }
 
-    public void PlayAudio(int _id, int _volume)
+    public void PlayAudio(int _id, float _volume)
     {
         if (audioMap.containsKey(_id))
         {

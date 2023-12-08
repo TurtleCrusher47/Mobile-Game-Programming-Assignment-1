@@ -112,7 +112,7 @@ public class TurtleEntity implements EntityBase, ICollidableBox
         {
             damageTimer += _dt;
 
-            if (damageTimer >= 2f)
+            if (damageTimer >= 3f)
             {
                 canTakeDamage = true;
                 damageTimer = 0;
@@ -209,6 +209,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox
                 canTakeDamage = false;
                 GameSystem.Instance.health -= 1;
 
+                AudioManager.Instance.PlayAudio(R.raw.hurt, 2.0f);
+
                 StartVibrate();
             }
 
@@ -224,6 +226,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox
         {
             //Play an audio
             GameSystem.Instance.score += 10;
+
+            AudioManager.Instance.PlayAudio(R.raw.collect, 3.0f);
 
             StartVibrate();
         }

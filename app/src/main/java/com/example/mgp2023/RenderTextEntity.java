@@ -70,9 +70,7 @@ public class RenderTextEntity implements EntityBase {
         paint.setTypeface(myfont);  // load the font we want using the font type.
         paint.setTextSize(50); // Font size we want.
 
-        //_canvas.drawText("FPS: " + fps, 30, 80, paint);
-        _canvas.drawText("Score: " + GameSystem.Instance.score, 1600, 80, paint);
-        _canvas.drawText("Health: " + GameSystem.Instance.health, 1600, 160, paint);
+        _canvas.drawText("Score: " + GameSystem.Instance.score, 1800, 80, paint);
     }
 
     @Override
