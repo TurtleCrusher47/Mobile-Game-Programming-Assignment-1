@@ -9,7 +9,6 @@ import android.view.SurfaceView;
 
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
-
     @Override
     public String GetName() {
         return "MainGame";
@@ -22,11 +21,13 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
 
         // Add more entities
+        JoystickEntity.Create();
+
         TurtleEntity.Create();
 
         TrashEntity.Create();
 
-//        SmurfEntity.Create();
+        SpikeEntity.Create();
 
         RenderTextEntity.Create();
 

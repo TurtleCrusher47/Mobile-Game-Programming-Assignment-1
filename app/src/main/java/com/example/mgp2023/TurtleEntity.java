@@ -11,8 +11,10 @@ import android.view.SurfaceView;
 
 import java.util.Random;
 
-public class TurtleEntity implements EntityBase, ICollidableBox{
-
+public class TurtleEntity implements EntityBase, ICollidableBox
+{
+    private static final double SPEED_PIXELS_PER_SECOND = 400.0;
+    private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / UpdateThread.targetFPS;
     // 1. Declare the use of spritesheet using Sprite class
     // Usual method of loading a bmp / image
     public Bitmap bmp = null;
@@ -23,6 +25,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
 
     // Variables to be used or can be used.
     public float xPos, yPos, xDir, yDir, lifeTime;
+    private double velocityX;
+    private double velocityY;
 
     private Vibrator vibrator;
 
@@ -32,7 +36,9 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     // For use with the TouchManager.class
     private boolean hasTouched = false;
 
-    int ScreenWidth, ScreenHeight;
+    int screenWidth, screenHeight;
+    private static final String TAG = "Turtle";
+
 
     @Override
     public boolean IsDone() {
@@ -58,12 +64,22 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         // Random generator under the java utility library
         Random ranGen = new Random();
 
-        xPos = ranGen.nextFloat() * _view.getWidth();
-        yPos = ranGen.nextFloat() * _view.getHeight();
+        //xPos = ranGen.nextFloat() * _view.getWidth();
+        //yPos = ranGen.nextFloat() * _view.getHeight();
+
+        DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
+        screenWidth = metrics.widthPixels;
+        screenHeight = metrics.heightPixels;
+
+
+        xPos = 100;
+        yPos = screenHeight / 2;
 
         xDir = ranGen.nextFloat() * 100.0f - 50.0f;
         yDir = ranGen.nextFloat() * 100.0f - 50.0f;
 
+        imgWidth = spritesheet.GetWidth()/2 - 80;
+        imgHeight = spritesheet.GetHeight()/6;
 
         vibrator = (Vibrator)_view.getContext().getSystemService(_view.getContext().VIBRATOR_SERVICE);
 
@@ -83,28 +99,35 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         // 4. Update spritesheet
         spritesheet.Update(_dt);
 
+        velocityX = GameSystem.Instance.actuatorX * MAX_SPEED;
+        velocityY = GameSystem.Instance.actuatorY * MAX_SPEED;
+
+        xPos += velocityX;
+        yPos += velocityY;
+//        MainGameSceneState.joystickEntity
+
         // 5. Deal with the touch on screen for interaction of the image using collision check
-        if (TouchManager.Instance.HasTouch())
-        {
-            // 6. Check collision
-            imgWidth = spritesheet.GetWidth();
-            imgHeight = spritesheet.GetHeight();
-
-            // Other than check the finger that touch on the screen, the x, y = the image area hence meant this is the image I want to interact with, we
-            // also want to touch and hold and drag this image
-            if (Collision.CircleToBox(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgWidth, imgHeight) || hasTouched)
-            {
-                // Collided
-                hasTouched = true;
-
-                // 7. Drag the sprite around the screen
-                xPos = TouchManager.Instance.GetPosX();
-                yPos = TouchManager.Instance.GetPosY();
-
-                xPos += xDir * _dt;
-                yPos += yDir * _dt;
-            }
-        }
+//        if (TouchManager.Instance.HasTouch())
+//        {
+//            // 6. Check collision
+//            imgWidth = spritesheet.GetWidth();
+//            imgHeight = spritesheet.GetHeight();
+//
+//            // Other than check the finger that touch on the screen, the x, y = the image area hence meant this is the image I want to interact with, we
+//            // also want to touch and hold and drag this image
+//            if (Collision.CircleToBox(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgWidth, imgHeight) || hasTouched)
+//            {
+//                // Collided
+//                hasTouched = true;
+//
+//                // 7. Drag the sprite around the screen
+//                xPos = TouchManager.Instance.GetPosX();
+//                yPos = TouchManager.Instance.GetPosY();
+//
+//                xPos += xDir * _dt;
+//                yPos += yDir * _dt;
+//            }
+//        }
     }
 
     @Override
@@ -175,18 +198,14 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
 
     }
 
-    private static final String TAG = "Turtle";
+    }
     @Override
     public void OnHit(ICollidableCircle _other) {
         // This allows you to check collision between 2 entities.
-        // Star Entity can cause harm to the player when hit.
-        // If hit by star, you can play an audio, or have a visual feedback or
-        // physical feedback.
         // SetIsDone(true) --> allows you to delete the entity from the screen.
 
         if (_other.GetType() == "TrashEntity") //Another Entity
         {
-            //SetIsDone(true);
             //Play an audio
             GameSystem.Instance.score += 10;
 
