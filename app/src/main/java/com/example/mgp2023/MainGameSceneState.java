@@ -1,5 +1,7 @@
 package com.example.mgp2023;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -55,6 +57,12 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void Update(float _dt)
     {
+
+        if (GameSystem.Instance.health <= 0)
+        {
+            GameSystem.Instance.isLost = true;
+
+        }
 
         EntityManager.Instance.Update(_dt );
 

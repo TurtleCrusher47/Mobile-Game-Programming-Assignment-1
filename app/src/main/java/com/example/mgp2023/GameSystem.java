@@ -10,6 +10,7 @@ public class GameSystem
 
     // Game stuff
     private boolean isPaused = false;
+    public boolean isLost = false;
     public double actuatorX;
     public double actuatorY;
 
