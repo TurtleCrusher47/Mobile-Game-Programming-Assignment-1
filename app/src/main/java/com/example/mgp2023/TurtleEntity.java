@@ -2,13 +2,17 @@ package com.example.mgp2023;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceView;
 
 import java.util.Random;
 
-public class TurtleEntity implements EntityBase, ICollidableBox{
+public class TurtleEntity implements EntityBase, ICollidableBox
+{
     private static final double SPEED_PIXELS_PER_SECOND = 400.0;
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / UpdateThread.targetFPS;
     // 1. Declare the use of spritesheet using Sprite class
@@ -23,6 +27,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     public float xPos, yPos, xDir, yDir, lifeTime;
     private double velocityX;
     private double velocityY;
+
+    private Vibrator vibrator;
 
     float imgWidth;
     float imgHeight;
@@ -75,8 +81,10 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         imgWidth = spritesheet.GetWidth()/2 - 80;
         imgHeight = spritesheet.GetHeight()/6;
 
-        Log.d(TAG, " turtle width: " + imgWidth);
-        Log.d(TAG, " turtle height: " + imgHeight);
+        vibrator = (Vibrator)_view.getContext().getSystemService(_view.getContext().VIBRATOR_SERVICE);
+
+        //Log.d(TAG, " turtle width: " + imgWidth);
+        //Log.d(TAG, " turtle height: " + imgHeight);
 
         isInit = true;
 
@@ -184,6 +192,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         {
             //Play an audio
             GameSystem.Instance.health -= 1;
+
+            StartVibrate();
         }
 
     }
@@ -196,8 +206,29 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         {
             //Play an audio
             GameSystem.Instance.score += 10;
+
+            StartVibrate();
         }
         //Log.d(TAG, "Turtle Hit");
+    }
+
+    public void StartVibrate()
+    {
+        if (Build.VERSION.SDK_INT >= 26)
+        {
+            vibrator.vibrate(VibrationEffect.createOneShot(150, 10));
+        }
+
+        else
+        {
+            long pattern[] = {0, 50, 0};
+            vibrator.vibrate(pattern, -1);
+        }
+    }
+
+    public void StopVibrate()
+    {
+        vibrator.cancel();
     }
 
 }
