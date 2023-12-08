@@ -2,6 +2,10 @@ package com.example.mgp2023;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceView;
 
@@ -19,6 +23,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
 
     // Variables to be used or can be used.
     public float xPos, yPos, xDir, yDir, lifeTime;
+
+    private Vibrator vibrator;
 
     float imgWidth;
     float imgHeight;
@@ -59,6 +65,10 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         yDir = ranGen.nextFloat() * 100.0f - 50.0f;
 
 
+        vibrator = (Vibrator)_view.getContext().getSystemService(_view.getContext().VIBRATOR_SERVICE);
+
+        //Log.d(TAG, " turtle width: " + imgWidth);
+        //Log.d(TAG, " turtle height: " + imgHeight);
 
         isInit = true;
 
@@ -155,6 +165,14 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
     @Override
     public void OnHit(ICollidableBox _other) {
 
+        if (_other.GetType() == "SpikeEntity") //Another Entity
+        {
+            //Play an audio
+            GameSystem.Instance.health -= 1;
+
+            StartVibrate();
+        }
+
     }
 
     private static final String TAG = "Turtle";
@@ -170,8 +188,30 @@ public class TurtleEntity implements EntityBase, ICollidableBox{
         {
             //SetIsDone(true);
             //Play an audio
+            GameSystem.Instance.score += 10;
+
+            StartVibrate();
         }
         //Log.d(TAG, "Turtle Hit");
+    }
+
+    public void StartVibrate()
+    {
+        if (Build.VERSION.SDK_INT >= 26)
+        {
+            vibrator.vibrate(VibrationEffect.createOneShot(150, 10));
+        }
+
+        else
+        {
+            long pattern[] = {0, 50, 0};
+            vibrator.vibrate(pattern, -1);
+        }
+    }
+
+    public void StopVibrate()
+    {
+        vibrator.cancel();
     }
 
 }
