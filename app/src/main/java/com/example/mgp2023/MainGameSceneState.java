@@ -41,7 +41,7 @@ public class MainGameSceneState implements StateBase {
         heart2 = HeartUIEntity.Create(200, 80);
         heart3 = HeartUIEntity.Create(320, 80);
 
-        SpikeEntity.Create();
+        SpikeEntity.Create(100, 20);
 
         RenderTextEntity.Create();
 

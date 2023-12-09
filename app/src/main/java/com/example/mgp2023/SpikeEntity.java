@@ -55,8 +55,8 @@ public class SpikeEntity implements EntityBase, ICollidableBox{
         // Random generator under the java utility library
         Random ranGen = new Random();
 
-        xPos = ranGen.nextFloat() * _view.getWidth();
-        yPos = ranGen.nextFloat() * _view.getHeight();
+//        xPos = ranGen.nextFloat() * _view.getWidth();
+//        yPos = ranGen.nextFloat() * _view.getHeight();
 
         isInit = true;
 
@@ -93,10 +93,12 @@ public class SpikeEntity implements EntityBase, ICollidableBox{
         return;
     }
 
-    public static SpikeEntity Create()
+    public static SpikeEntity Create(int _xPos, int _yPos)
     {
         SpikeEntity result = new SpikeEntity();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_SPIKE);
+        result.xPos = _xPos;
+        result.yPos = _yPos;
         return result;
     }
 
