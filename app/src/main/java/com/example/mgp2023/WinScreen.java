@@ -63,7 +63,7 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
 
     @Override
     public String GetName() {
-        return "LoseScreen";
+        return "WinScreen";
     }
 
     @Override

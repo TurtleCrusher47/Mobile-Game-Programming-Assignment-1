@@ -102,7 +102,7 @@ public class PauseButtonEntity implements EntityBase
 
     @Override
     public int GetRenderLayer() {
-        return 0;
+        return LayerConstants.PAUSEB_LAYER;
     }
 
     @Override

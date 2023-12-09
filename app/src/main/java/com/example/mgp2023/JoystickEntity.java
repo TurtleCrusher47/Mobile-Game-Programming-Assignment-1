@@ -103,7 +103,7 @@ public class JoystickEntity implements EntityBase {
 
     @Override
     public int GetRenderLayer() {
-        return 0;
+        return LayerConstants.UI_LAYER;
     }
 
     @Override

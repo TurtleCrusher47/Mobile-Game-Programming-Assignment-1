@@ -3,13 +3,10 @@ package com.example.mgp2023;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.SurfaceView;
 
-import java.util.Random;
+public class TrashBinEntity implements EntityBase, ICollidableCircle{
 
-public class TrashEntity implements EntityBase, ICollidableCircle
-{
     // Usual method of loading a bmp / image
     public Bitmap bmpP = null;
     public Bitmap scaledBmpP = null;
@@ -40,7 +37,7 @@ public class TrashEntity implements EntityBase, ICollidableCircle
     public void Init(SurfaceView _view)
     {
         // New method using our own resource manager : Returns pre-loaded one if exists
-        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.plasticbag);
+        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.bin);
 
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
@@ -84,10 +81,10 @@ public class TrashEntity implements EntityBase, ICollidableCircle
         return;
     }
 
-    public static TrashEntity Create(int _xPos, int _yPos)
+    public static TrashBinEntity Create(int _xPos, int _yPos)
     {
-        TrashEntity result = new TrashEntity();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_TRASH);
+        TrashBinEntity result = new TrashBinEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_BIN);
         result.xPos = _xPos;
         result.yPos = _yPos;
         return result;
@@ -119,7 +116,7 @@ public class TrashEntity implements EntityBase, ICollidableCircle
 
         if (_other.GetType() == "TurtleEntity") //Another Entity
         {
-            SetIsDone(true);
+            GameSystem.Instance.isWon = true;
         }
 
     }

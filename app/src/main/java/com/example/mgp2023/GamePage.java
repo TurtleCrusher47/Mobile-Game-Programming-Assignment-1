@@ -35,6 +35,16 @@ public class GamePage extends FragmentActivity
             return true;
         }
 
+        if (GameSystem.Instance.isWon)
+        {
+            Intent intent = new Intent(GamePage.this, WinScreen.class);
+            StateManager.Instance.ChangeState("WinScreen");
+
+            startActivity(intent);
+
+            return true;
+        }
+
         // WE are hijacking the touch event into our own system
         int x = (int) event.getX();
         int y = (int) event.getY();

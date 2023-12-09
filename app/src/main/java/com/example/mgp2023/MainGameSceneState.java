@@ -22,6 +22,7 @@ public class MainGameSceneState implements StateBase {
     public void OnEnter(SurfaceView _view)
     {
         GameSystem.Instance.isLost = false;
+        GameSystem.Instance.isWon = false;
         GameSystem.Instance.score = 0;
         GameSystem.Instance.health = 3;
         GameSystem.Instance.actuatorX = 0;
@@ -35,13 +36,34 @@ public class MainGameSceneState implements StateBase {
 
         TurtleEntity.Create();
 
-        TrashEntity.Create(100, 200);
-
         heart1 = HeartUIEntity.Create(80, 80);
         heart2 = HeartUIEntity.Create(200, 80);
         heart3 = HeartUIEntity.Create(320, 80);
 
-        SpikeEntity.Create(100, 20);
+        for (int i = 0; i < 11; i++)
+        {
+            SpikeEntity.Create(100 + (i * 200), 20);
+            SpikeEntity.Create(100 + (i * 200), 1000);
+        }
+
+        SpikeEntity.Create(500, 220);
+        SpikeEntity.Create(500, 420);
+
+        SpikeEntity.Create(1100, 800);
+        SpikeEntity.Create(1100, 220);
+
+        SpikeEntity.Create(1700, 800);
+        SpikeEntity.Create(1700, 600);
+
+        TrashEntity.Create(100, 200);
+        TrashEntity.Create(100, 700);
+        TrashEntity.Create(800, 800);
+        TrashEntity.Create(800, 300);
+        TrashEntity.Create(1400, 500);
+        TrashEntity.Create(2000, 300);
+
+        TrashBinEntity.Create(2000, 800);
+
 
         RenderTextEntity.Create();
 
@@ -72,6 +94,10 @@ public class MainGameSceneState implements StateBase {
     public void Update(float _dt)
     {
 
+        if (!AudioManager.Instance.IsPlaying(R.raw.bgm))
+        {
+            AudioManager.Instance.PlayAudio(R.raw.bgm, 0.9f);
+        }
         if (GameSystem.Instance.health <= 0)
         {
             GameSystem.Instance.isLost = true;
