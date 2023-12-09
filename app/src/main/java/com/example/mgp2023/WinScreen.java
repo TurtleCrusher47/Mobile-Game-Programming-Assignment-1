@@ -13,14 +13,14 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
 {
     public static WinScreen Instance = null;
     private Button btn_restart;
-    private Button btn_quit;
+    private Button btn_back;
 
     @Override
     protected void onCreate (Bundle saveInstanceState)
     {
         super.onCreate(saveInstanceState);
 
-        setContentView(R.layout.losescreen);
+        setContentView(R.layout.winscreen);
 
         btn_restart = (Button) findViewById(R.id.btn_restart);
         btn_restart.setOnClickListener(this);
@@ -29,8 +29,8 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
 //        btn_back.setOnClickListener(this);
         // Set Listener to this button --> Back Button
 
-        btn_quit = (Button) findViewById(R.id.btn_quit);
-        btn_quit.setOnClickListener(this);
+        btn_back = (Button) findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(this);
 
         // Make this known to the StateManager
         StateManager.Instance.AddState(new WinScreen());
@@ -39,7 +39,7 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
 
         StateManager.Instance.Init(new SurfaceView(this));
         GameSystem.Instance.Init(new SurfaceView(this));
-        StateManager.Instance.Start("LoseScreen");
+        StateManager.Instance.Start("WinScreen");
     }
 
     @Override
@@ -53,10 +53,10 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
             intent.setClass(this, GamePage.class);
             StateManager.Instance.ChangeState("MainGame");
         }
-        else if (view == btn_quit)
+        else if (view == btn_back)
         {
-            finish();
-            System.exit(0);
+            intent.setClass(this, Mainmenu.class);
+            StateManager.Instance.ChangeState("MainMenu");
         }
         startActivity(intent);
     }
