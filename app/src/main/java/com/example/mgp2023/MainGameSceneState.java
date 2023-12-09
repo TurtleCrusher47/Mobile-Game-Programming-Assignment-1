@@ -35,7 +35,7 @@ public class MainGameSceneState implements StateBase {
 
         TurtleEntity.Create();
 
-        TrashEntity.Create();
+        TrashEntity.Create(100, 200);
 
         heart1 = HeartUIEntity.Create(80, 80);
         heart2 = HeartUIEntity.Create(200, 80);

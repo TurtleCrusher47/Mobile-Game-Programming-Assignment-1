@@ -91,10 +91,12 @@ public class TrashEntity implements EntityBase, ICollidableCircle
         return;
     }
 
-    public static TrashEntity Create()
+    public static TrashEntity Create(int _xPos, int _yPos)
     {
         TrashEntity result = new TrashEntity();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_TRASH);
+        result.xPos = _xPos;
+        result.yPos = _yPos;
         return result;
     }
 
