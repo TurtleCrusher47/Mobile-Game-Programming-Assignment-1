@@ -52,6 +52,7 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
 
     private SensorManager sensorManager;
     private Sensor sensor;
+    private float[] values = {0, 0, 0};
 
     @Override
     public boolean IsDone() {
@@ -67,9 +68,11 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
     public void Init(SurfaceView _view)
     {
         sensorManager = (SensorManager) _view.getContext().getSystemService((Context.SENSOR_SERVICE));
-        sensor = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
-        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null)
+        {
+            sensor = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
+            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.burgle_image), 2, 2, 4);
@@ -272,7 +275,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
+        values = event.values;
+        System.out.println(values);
     }
 
     @Override
