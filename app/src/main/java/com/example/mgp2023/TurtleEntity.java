@@ -19,7 +19,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-public class TurtleEntity implements EntityBase, ICollidableBox
+public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventListener
 {
     private static final double SPEED_PIXELS_PER_SECOND = 400.0;
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / UpdateThread.targetFPS;
@@ -67,8 +67,9 @@ public class TurtleEntity implements EntityBase, ICollidableBox
     public void Init(SurfaceView _view)
     {
         sensorManager = (SensorManager) _view.getContext().getSystemService((Context.SENSOR_SERVICE));
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-//        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensor = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
+        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.burgle_image), 2, 2, 4);
@@ -269,4 +270,13 @@ public class TurtleEntity implements EntityBase, ICollidableBox
         vibrator.cancel();
     }
 
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
 }
