@@ -1,7 +1,10 @@
 package com.example.mgp2023;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
@@ -10,6 +13,11 @@ import android.util.Log;
 import android.view.SurfaceView;
 
 import java.util.Random;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 
 public class TurtleEntity implements EntityBase, ICollidableBox
 {
@@ -42,6 +50,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox
     int screenWidth, screenHeight;
     private static final String TAG = "Turtle";
 
+    private SensorManager sensorManager;
+    private Sensor sensor;
 
     @Override
     public boolean IsDone() {
@@ -56,6 +66,9 @@ public class TurtleEntity implements EntityBase, ICollidableBox
     @Override
     public void Init(SurfaceView _view)
     {
+        sensorManager = (SensorManager) _view.getContext().getSystemService((Context.SENSOR_SERVICE));
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+//        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.burgle_image), 2, 2, 4);
