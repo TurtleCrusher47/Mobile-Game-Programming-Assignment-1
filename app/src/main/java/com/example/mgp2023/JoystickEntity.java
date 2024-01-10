@@ -43,17 +43,20 @@ public class JoystickEntity implements EntityBase {
         innerCirclePaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
     @Override
-    public boolean IsDone() {
+    public boolean IsDone()
+    {
         return false;
     }
 
     @Override
-    public void SetIsDone(boolean _isDone) {
+    public void SetIsDone(boolean _isDone)
+    {
 
     }
 
     @Override
-    public void Init(SurfaceView _view) {
+    public void Init(SurfaceView _view)
+    {
 
     }
 
@@ -97,7 +100,8 @@ public class JoystickEntity implements EntityBase {
     }
 
     @Override
-    public boolean IsInit() {
+    public boolean IsInit()
+    {
         return false;
     }
 
@@ -107,7 +111,8 @@ public class JoystickEntity implements EntityBase {
     }
 
     @Override
-    public void SetRenderLayer(int _newLayer) {
+    public void SetRenderLayer(int _newLayer)
+    {
 
     }
 

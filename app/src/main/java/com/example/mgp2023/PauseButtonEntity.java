@@ -58,14 +58,14 @@ public class PauseButtonEntity implements EntityBase
 
         if (TouchManager.Instance.HasTouch())
         {
-            if (TouchManager.Instance.IsDown() && !Paused)
+            if (TouchManager.Instance.IsDown() && !GameSystem.Instance.GetIsPaused())
             {
-                //checl collision of button
+                //check collision of button
                 float imgRadius = scaledBmpP.getHeight() * 0.5f;
 
                 if (Collision.CircleToCircle(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) && buttonDelay >= 0.25)
                 {
-                    Paused = true;
+//                    Paused = true;
 
 
                     if (PauseConfirmDialogueFragment.isShown)

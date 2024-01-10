@@ -124,6 +124,9 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
         velocityX = GameSystem.Instance.actuatorX * MAX_SPEED;
         velocityY = GameSystem.Instance.actuatorY * MAX_SPEED;
 
+        // Change position of turtle based on X and Y values of joystick or accelerometer
+//        xPos += velocityX + values[1];
+//        yPos += velocityY + values[0];
         xPos += velocityX;
         yPos += velocityY;
 
