@@ -294,7 +294,12 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
         linear_acceleration[2] = event.values[2] - gravity[2];
 
         values = event.values;
-        System.out.println(values[1]);
+//        System.out.println("x");
+//        System.out.println(values[0]);
+//        System.out.println("y");
+//        System.out.println(values[1]);
+//        System.out.println("z");
+//        System.out.println(values[2]);
     }
 
     @Override

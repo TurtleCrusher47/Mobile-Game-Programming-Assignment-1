@@ -68,7 +68,7 @@ public class JoystickEntity implements EntityBase {
             {
                 isPressed = true;
 
-                System.out.println("Down");
+//                System.out.println("Down");
             }
         }
         if (TouchManager.Instance.HasMove())
