@@ -13,7 +13,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
     public static Mainmenu Instance = null;
 
     private Button btn_start;
-    private Button btn_back;
+    private Button btn_settings;
     private Button btn_quit;
 
     @Override
@@ -25,10 +25,9 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
 
         btn_start = (Button) findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this);
-        // Set Listener to this button --> Start Button
-//        btn_back = (Button) findViewById(R.id.btn_back);
-//        btn_back.setOnClickListener(this);
-        // Set Listener to this button --> Back Button
+
+        btn_settings = (Button) findViewById(R.id.btn_settings);
+        btn_settings.setOnClickListener(this);
 
         btn_quit = (Button) findViewById(R.id.btn_quit);
         btn_quit.setOnClickListener(this);
@@ -65,6 +64,11 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
 
 //            intent.setClass(this, WinScreen.class);
 //            StateManager.Instance.ChangeState("WinScreen");
+        }
+        else if (v == btn_settings)
+        {
+            intent.setClass(this, SettingsPage.class);
+            StateManager.Instance.ChangeState("SettingsPage");
         }
         else if (v == btn_quit)
         {
