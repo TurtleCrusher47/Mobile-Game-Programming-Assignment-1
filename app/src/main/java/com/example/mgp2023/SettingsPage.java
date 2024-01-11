@@ -10,13 +10,14 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.Switch;
 
+import androidx.appcompat.widget.SwitchCompat;
+
 public class SettingsPage extends Activity implements OnClickListener, StateBase {
 
     public static SettingsPage Instance = null;
 
     private Button btn_start;
-    private Button btn_settings;
-    private Button btn_quit;
+    private Button btn_back;
     private Button btn_controls;
 
     @Override
@@ -26,11 +27,11 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
         setContentView(R.layout.settingspage);
 
-        btn_controls = (Switch) findViewById(R.id.controls_switch);
+        btn_controls = (SwitchCompat) findViewById(R.id.controls_switch);
         btn_controls.setOnClickListener(this);
 
-//        btn_start = (Button) findViewById(R.id.btn_start);
-//        btn_start.setOnClickListener(this);
+        btn_back = (Button) findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(this);
 
         // Make this known to the StateManager
         StateManager.Instance.AddState(new SettingsPage());

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/backgnd">
 
@@ -10,34 +11,53 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--        Master Volume-->
-
-
-        <!--        BGM Volume-->
-
-
-        <!--        SFX Volume-->
-
-
         <!--        Back Button-->
         <Button
             android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="top|left"
+            android:layout_marginTop="10dp"
             android:background="@drawable/button"
             android:text="Back"
             android:textColor="#ffffff"
             android:textSize="18dp" />
 
-        <!--        Controls Switch-->
-        <Switch
-            android:id="@+id/controls_switch"
+        <!--        Master Volume-->
+        <SeekBar
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="50dp"
+            android:thumbTint="@color/black"/>
+
+        <!--        BGM Volume-->
+        <SeekBar
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:thumbTint="@color/black"/>
+
+        <!--        SFX Volume-->
+        <SeekBar
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:thumbTint="@color/black" />
+
+        <!--        Controls Switch-->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/controls_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:theme="@style/Theme.AppCompat"
+            android:layout_marginTop="30dp"
+            app:thumbTint="@color/black"
+            app:trackTint="@color/cardview_dark_background"
+            app:switchMinWidth="300dp" />
 
 <!--            android:text="Controls"-->
 <!--            android:textColor="#ffffff"-->
