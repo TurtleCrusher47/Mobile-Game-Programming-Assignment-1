@@ -8,6 +8,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.Switch;
 
 public class SettingsPage extends Activity implements OnClickListener, StateBase {
 
@@ -25,16 +26,7 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
         setContentView(R.layout.settingspage);
 
-        btn_start = (Button) findViewById(R.id.btn_start);
-        btn_start.setOnClickListener(this);
-
-        btn_settings = (Button) findViewById(R.id.btn_settings);
-        btn_settings.setOnClickListener(this);
-
-        btn_quit = (Button) findViewById(R.id.btn_quit);
-        btn_quit.setOnClickListener(this);
-
-        btn_controls = (Button) findViewById(R.id.btn_controls);
+        btn_controls = (Switch) findViewById(R.id.controls_switch);
         btn_controls.setOnClickListener(this);
 
 //        btn_start = (Button) findViewById(R.id.btn_start);

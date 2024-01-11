@@ -11,53 +11,13 @@
         android:orientation="vertical">
 
         <!--        Master Volume-->
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:padding="5dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="210dp"
-            android:background="@drawable/button"
-            android:text="Start"
-            android:textColor="#ffffff"
-            android:textSize="18dp" />
+
 
         <!--        BGM Volume-->
-        <Button
-            android:id="@+id/btn_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button"
-            android:text="Settings"
-            android:textColor="#ffffff"
-            android:textSize="18dp" />
+
 
         <!--        SFX Volume-->
-        <Button
-            android:id="@+id/btn_quit"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button"
-            android:text="Quit"
-            android:textColor="#ffffff"
-            android:textSize="18dp" />
 
-        <!--        Controls Switch-->
-        <Button
-            android:id="@+id/btn_controls"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button"
-            android:text="Controls"
-            android:textColor="#ffffff"
-            android:textSize="18dp" />
 
         <!--        Back Button-->
         <Button
@@ -70,6 +30,18 @@
             android:text="Back"
             android:textColor="#ffffff"
             android:textSize="18dp" />
+
+        <!--        Controls Switch-->
+        <Switch
+            android:id="@+id/controls_switch"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp" />
+
+<!--            android:text="Controls"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="18dp" />-->
 
     </LinearLayout>
 
