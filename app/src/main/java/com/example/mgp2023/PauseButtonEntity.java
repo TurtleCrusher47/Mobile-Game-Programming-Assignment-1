@@ -95,8 +95,7 @@ public class PauseButtonEntity implements EntityBase
                 }
             }
         }
-
-        else
+       else
             Paused = false;
 
     }

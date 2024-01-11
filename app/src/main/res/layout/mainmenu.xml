@@ -21,11 +21,22 @@
             android:textSize="18dp" />
 
         <Button
+            android:id="@+id/btn_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button"
+            android:text="Settings"
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
+
+        <Button
             android:id="@+id/btn_quit"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/button"
             android:text="Quit"
             android:textColor="#ffffff"
