@@ -28,16 +28,34 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:thumbTint="@color/black"/>
+            android:layout_marginTop="10dp"
+            android:thumbTint="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:text="Master Volume"
+            android:translationY="-25dp"
+            android:textColor="@color/white" />
 
         <!--        BGM Volume-->
+
         <SeekBar
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:thumbTint="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:text="BGM Volume"
+            android:translationY="-25dp"
+            android:textColor="@color/white" />
 
         <!--        SFX Volume-->
         <SeekBar
@@ -46,6 +64,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:thumbTint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:text="SFX Volume"
+            android:translationY="-25dp"
+            android:textColor="@color/white" />
 
         <!--        Controls Switch-->
         <androidx.appcompat.widget.SwitchCompat
@@ -56,12 +82,24 @@
             android:theme="@style/Theme.AppCompat"
             android:layout_marginTop="30dp"
             app:thumbTint="@color/black"
-            app:trackTint="@color/cardview_dark_background"
+            app:trackTint="@color/white"
             app:switchMinWidth="300dp" />
 
-<!--            android:text="Controls"-->
-<!--            android:textColor="#ffffff"-->
-<!--            android:textSize="18dp" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:text="Joystick Mode"
+            android:translationY="-25dp"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="580dp"
+            android:text="Accelerometer Mode"
+            android:translationY="-45dp"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
