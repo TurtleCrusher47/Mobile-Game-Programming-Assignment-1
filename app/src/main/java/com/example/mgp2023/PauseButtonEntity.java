@@ -58,6 +58,7 @@ public class PauseButtonEntity implements EntityBase
 
         if (TouchManager.Instance.HasTouch())
         {
+            // If the game is not paused
             if (TouchManager.Instance.IsDown() && !GameSystem.Instance.GetIsPaused())
             {
                 //check collision of button
@@ -65,9 +66,6 @@ public class PauseButtonEntity implements EntityBase
 
                 if (Collision.CircleToCircle(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) && buttonDelay >= 0.25)
                 {
-//                    Paused = true;
-
-
                     if (PauseConfirmDialogueFragment.isShown)
                     {
                         return;
@@ -75,6 +73,24 @@ public class PauseButtonEntity implements EntityBase
 
                     PauseConfirmDialogueFragment newPause = new PauseConfirmDialogueFragment();
                     newPause.show(GamePage.Instance.getSupportFragmentManager(), "PauseConfirm");
+
+                }
+            }
+            // If the game is paused
+            else if (TouchManager.Instance.IsDown() && GameSystem.Instance.GetIsPaused())
+            {
+                //check collision of button
+                float imgRadius = scaledBmpP.getHeight() * 0.5f;
+
+                if (Collision.CircleToCircle(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) && buttonDelay >= 0.25)
+                {
+                    if (UnpauseConfirmDialogueFragment.isShown)
+                    {
+                        return;
+                    }
+
+                    UnpauseConfirmDialogueFragment newUnpause = new UnpauseConfirmDialogueFragment();
+                    newUnpause.show(GamePage.Instance.getSupportFragmentManager(), "UnpauseConfirm");
 
                 }
             }
