@@ -13,12 +13,29 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
     public static SettingsPage Instance = null;
 
+    private Button btn_start;
+    private Button btn_settings;
+    private Button btn_quit;
+    private Button btn_controls;
+
     @Override
     protected void onCreate (Bundle saveInstanceState)
     {
         super.onCreate(saveInstanceState);
 
-        setContentView(R.layout.mainmenu);
+        setContentView(R.layout.settingspage);
+
+        btn_start = (Button) findViewById(R.id.btn_start);
+        btn_start.setOnClickListener(this);
+
+        btn_settings = (Button) findViewById(R.id.btn_settings);
+        btn_settings.setOnClickListener(this);
+
+        btn_quit = (Button) findViewById(R.id.btn_quit);
+        btn_quit.setOnClickListener(this);
+
+        btn_controls = (Button) findViewById(R.id.btn_controls);
+        btn_controls.setOnClickListener(this);
 
 //        btn_start = (Button) findViewById(R.id.btn_start);
 //        btn_start.setOnClickListener(this);
@@ -40,7 +57,7 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
     @Override
     public String GetName() {
-        return null;
+        return "SettingsPage";
     }
 
     @Override

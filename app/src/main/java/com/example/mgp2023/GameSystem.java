@@ -33,6 +33,7 @@ public class GameSystem
 
         // 2. We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());
+        StateManager.Instance.AddState(new SettingsPage());
 
         /*
         // Please add state, NextPage.
