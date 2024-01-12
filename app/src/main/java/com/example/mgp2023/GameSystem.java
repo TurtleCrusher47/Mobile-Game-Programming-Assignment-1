@@ -25,9 +25,6 @@ public class GameSystem
     {
     }
 
-    public void Update(float _deltaTime)
-    {
-    }
 
     public void Init(SurfaceView _view)
     {
@@ -48,6 +45,11 @@ public class GameSystem
 
         score = 0;
         health = 3;
+    }
+
+    public void Update(float _deltaTime)
+    {
+
     }
 
     public void SetIsPaused(boolean _newIsPaused)

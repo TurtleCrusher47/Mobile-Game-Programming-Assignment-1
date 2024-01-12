@@ -70,9 +70,11 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
     public void Init(SurfaceView _view)
     {
         // Create accelerometer if the control mode is set to accelerometer
-        if (GameSystem.Instance.accelerometer_control_mode) {
+        if (GameSystem.Instance.accelerometer_control_mode)
+        {
             sensorManager = (SensorManager) _view.getContext().getSystemService((Context.SENSOR_SERVICE));
-            if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
+            if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null)
+            {
                 sensor = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
                 sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
             }
@@ -123,8 +125,12 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
         // 4. Update spritesheet
         spritesheet.Update(_dt);
 
-        velocityX = GameSystem.Instance.actuatorX * MAX_SPEED;
-        velocityY = GameSystem.Instance.actuatorY * MAX_SPEED;
+        // If it is not in accelerometer mode, add velocity based on actuator
+        if (!GameSystem.Instance.accelerometer_control_mode)
+        {
+            velocityX = GameSystem.Instance.actuatorX * MAX_SPEED;
+            velocityY = GameSystem.Instance.actuatorY * MAX_SPEED;
+        }
 
         // Change position of turtle based on X and Y values of joystick or accelerometer
         xPos += velocityX + values[1];
@@ -246,7 +252,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
         // This allows you to check collision between 2 entities.
         // SetIsDone(true) --> allows you to delete the entity from the screen.
 
-        if (_other.GetType() == "TrashEntity") //Another Entity
+        System.out.println("collided");
+        if (_other.GetType() == "TrashEntity")
         {
             //Play an audio
             GameSystem.Instance.score += 10;
