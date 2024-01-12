@@ -25,6 +25,7 @@
 
         <!--        Master Volume-->
         <SeekBar
+            android:id="@+id/seekbar_mastervolume"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -43,6 +44,7 @@
         <!--        BGM Volume-->
 
         <SeekBar
+            android:id="@+id/seekbar_bgm"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -59,6 +61,7 @@
 
         <!--        SFX Volume-->
         <SeekBar
+            android:id="@+id/seekbar_sfx"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
