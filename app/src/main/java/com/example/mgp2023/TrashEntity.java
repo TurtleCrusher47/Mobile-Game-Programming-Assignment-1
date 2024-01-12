@@ -121,7 +121,6 @@ public class TrashEntity implements EntityBase, ICollidableCircle
         {
             SetIsDone(true);
         }
-
     }
 
     @Override

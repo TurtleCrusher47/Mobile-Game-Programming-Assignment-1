@@ -225,7 +225,6 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
 
     @Override
     public void OnHit(ICollidableBox _other) {
-
         if (_other.GetType() == "SpikeEntity") //Another Entity
         {
             if (canTakeDamage)
@@ -240,9 +239,7 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
 
                 StartVibrate();
             }
-
         }
-
     }
     @Override
     public void OnHit(ICollidableCircle _other) {
@@ -257,6 +254,11 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
             AudioManager.Instance.PlayAudio(R.raw.collect, 3.0f);
 
             StartVibrate();
+        }
+        else if (_other.GetType() == "TrashBinEntity")
+        {
+            GameSystem.Instance.isWon = true;
+            System.out.println("Enddddddddddddddddddddddddddddddddddddddddddddddd");
         }
         //Log.d(TAG, "Turtle Hit");
     }

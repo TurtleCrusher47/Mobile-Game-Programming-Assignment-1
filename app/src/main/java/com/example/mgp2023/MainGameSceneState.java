@@ -94,7 +94,6 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void Update(float _dt)
     {
-
         if (!AudioManager.Instance.IsPlaying(R.raw.bgm))
         {
             AudioManager.Instance.PlayAudio(R.raw.bgm, 0.9f);

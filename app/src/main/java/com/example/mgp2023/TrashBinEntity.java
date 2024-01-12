@@ -95,7 +95,7 @@ public class TrashBinEntity implements EntityBase, ICollidableCircle{
 
     @Override
     public String GetType() {
-        return "TrashEntity";
+        return "TrashBinEntity";
     }
 
     @Override
@@ -116,9 +116,8 @@ public class TrashBinEntity implements EntityBase, ICollidableCircle{
 
         if (_other.GetType() == "TurtleEntity") //Another Entity
         {
-            GameSystem.Instance.isWon = true;
+            SetIsDone(true);
         }
-
     }
 
     @Override
