@@ -12,6 +12,7 @@ public class GameSystem
     private boolean isPaused = false;
     public boolean isLost = false;
     public boolean isWon = false;
+    public boolean accelerometer_control_mode = false;
     public double actuatorX;
     public double actuatorY;
 

@@ -29,8 +29,11 @@ public class MainGameSceneState implements StateBase {
         // 3. Create Background
         RenderBackground.Create();
 
-        // Add more entities
-        JoystickEntity.Create();
+        // Create joystick if the control mode is not accelerometer
+        if (!GameSystem.Instance.accelerometer_control_mode)
+        {
+            JoystickEntity.Create();
+        }
 
         TurtleEntity.Create();
 

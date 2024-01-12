@@ -69,11 +69,13 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
     @Override
     public void Init(SurfaceView _view)
     {
-        sensorManager = (SensorManager) _view.getContext().getSystemService((Context.SENSOR_SERVICE));
-        if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null)
-        {
-            sensor = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
-            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        // Create accelerometer if the control mode is set to accelerometer
+        if (GameSystem.Instance.accelerometer_control_mode) {
+            sensorManager = (SensorManager) _view.getContext().getSystemService((Context.SENSOR_SERVICE));
+            if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
+                sensor = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
+                sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+            }
         }
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
@@ -125,10 +127,10 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
         velocityY = GameSystem.Instance.actuatorY * MAX_SPEED;
 
         // Change position of turtle based on X and Y values of joystick or accelerometer
-//        xPos += velocityX + values[1];
-//        yPos += velocityY + values[0];
-        xPos += velocityX;
-        yPos += velocityY;
+        xPos += velocityX + values[1];
+        yPos += velocityY + values[0];
+//        xPos += velocityX;
+//        yPos += velocityY;
 
         if (!canTakeDamage)
         {

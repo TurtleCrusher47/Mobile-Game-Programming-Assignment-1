@@ -18,10 +18,10 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
     public static SettingsPage Instance = null;
 
     private Button btn_back;
-    private SwitchCompat switch_controls;
     private SeekBar seekbar_mastervolume;
     private SeekBar seekbar_bgm;
     private SeekBar seekbar_sfx;
+    private SwitchCompat switch_controls;
 
     @Override
     protected void onCreate (Bundle saveInstanceState)
@@ -57,13 +57,18 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent();
-        if (view == btn_back)
-        {
+
+        if (view == btn_back) {
+            Intent intent = new Intent();
             intent.setClass(this, Mainmenu.class);
             StateManager.Instance.ChangeState("Mainmenu");
+            startActivity(intent);
         }
-        startActivity(intent);
+        else if (view == switch_controls)
+        {
+            GameSystem.Instance.accelerometer_control_mode = switch_controls.isChecked();
+//            System.out.println(GameSystem.Instance.accelerometer_control_mode);
+        }
     }
 
     @Override

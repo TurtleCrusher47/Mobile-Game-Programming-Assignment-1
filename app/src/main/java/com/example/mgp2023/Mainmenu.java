@@ -54,6 +54,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
     //If back button is clicked, we go to main menu.
     public void onClick (View v) {
         Intent intent = new Intent();
+
         if (v == btn_start)
         {
             //intent -> to set to another class which is another page or screen to be
