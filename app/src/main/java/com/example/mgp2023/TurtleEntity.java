@@ -238,6 +238,13 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
                 canTakeDamage = false;
                 GameSystem.Instance.health -= 1;
 
+                if (GameSystem.Instance.health <= 0)
+                {
+                    GameSystem.Instance.isLost = true;
+
+                    return;
+                }
+
                 xPos = 100;
                 yPos = screenHeight / 2;
 

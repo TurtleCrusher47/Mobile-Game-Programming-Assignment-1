@@ -98,12 +98,7 @@ public class MainGameSceneState implements StateBase {
         {
             AudioManager.Instance.PlayAudio(R.raw.bgm, 0.9f);
         }
-        if (GameSystem.Instance.health <= 0)
-        {
-            GameSystem.Instance.isLost = true;
 
-            return;
-        }
 
         EntityManager.Instance.Update(_dt );
 
