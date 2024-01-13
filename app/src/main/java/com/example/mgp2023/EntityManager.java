@@ -76,8 +76,6 @@ public class EntityManager
                         {
                             first.OnHit(second);
                             second.OnHit(first);
-
-                            GamePage.Instance.Refresh();
                         }
                     }
                     //Circle to box
@@ -91,8 +89,6 @@ public class EntityManager
                             //System.out.println("width " + second.GetWidth() + "height " + second.GetHeight());
                             first.OnHit(second);
                             second.OnHit(first);
-
-                            GamePage.Instance.Refresh();
                         }
                     }
                 }
@@ -114,8 +110,6 @@ public class EntityManager
                         {
                             first.OnHit(second);
                             second.OnHit(first);
-
-                            GamePage.Instance.Refresh();
                         }
                     }
                     // Box to circle
@@ -129,8 +123,6 @@ public class EntityManager
                             //System.out.println("width " + first.GetWidth() + "height " + first.GetHeight());
                             first.OnHit(second);
                             second.OnHit(first);
-
-                            GamePage.Instance.Refresh();
                         }
                     }
                 }

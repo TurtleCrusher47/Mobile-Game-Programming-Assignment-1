@@ -246,6 +246,7 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
                 StartVibrate();
             }
         }
+        GamePage.Instance.CheckGameState();
     }
     @Override
     public void OnHit(ICollidableCircle _other) {
@@ -265,9 +266,9 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
         else if (_other.GetType() == "TrashBinEntity")
         {
             GameSystem.Instance.isWon = true;
-            System.out.println("Enddddddddddddddddddddddddddddddddddddddddddddddd");
         }
         //Log.d(TAG, "Turtle Hit");
+        GamePage.Instance.CheckGameState();
     }
 
     public void StartVibrate()

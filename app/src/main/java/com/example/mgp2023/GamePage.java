@@ -34,8 +34,10 @@ public class GamePage extends FragmentActivity
         return true;
     }
 
-    public void Refresh()
+    public void CheckGameState()
     {
+        System.out.println("check game state");
+
         if (GameSystem.Instance.isLost)
         {
             Intent intent = new Intent(GamePage.this, LoseScreen.class);

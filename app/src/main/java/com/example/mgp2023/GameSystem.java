@@ -61,5 +61,4 @@ public class GameSystem
     {
         return isPaused;
     }
-
 }
