@@ -69,7 +69,7 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
     @Override
     public void OnEnter(SurfaceView _view) {
 
-        AudioManager.Instance.PlayAudio(R.raw.bgm, GameSystem.Instance.bgmVolume);
+        AudioManager.Instance.PlayAudio(R.raw.bgm, GameSystem.Instance.bgmVolume * GameSystem.Instance.masterVolume);
     }
 
     @Override

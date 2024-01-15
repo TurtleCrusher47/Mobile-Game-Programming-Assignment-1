@@ -69,6 +69,30 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
             GameSystem.Instance.accelerometer_control_mode = switch_controls.isChecked();
 //            System.out.println(GameSystem.Instance.accelerometer_control_mode);
         }
+
+        else if (view == seekbar_mastervolume)
+        {
+            GameSystem.Instance.masterVolume = seekbar_mastervolume.getProgress();
+            //AudioManager.Instance.SetMasterVolume(GameSystem.Instance.masterVolume);
+
+            System.out.println(GameSystem.Instance.masterVolume);
+        }
+
+        else if (view == seekbar_bgm)
+        {
+            GameSystem.Instance.bgmVolume = seekbar_bgm.getProgress();
+            //AudioManager.Instance.SetBGMVolume(GameSystem.Instance.bgmVolume);
+            System.out.println(GameSystem.Instance.bgmVolume);
+
+        }
+
+        else if (view == seekbar_sfx)
+        {
+            GameSystem.Instance.sfxVolume = seekbar_sfx.getProgress();
+            //AudioManager.Instance.SetSFXVolume(GameSystem.Instance.sfxVolume);
+            System.out.println(GameSystem.Instance.sfxVolume);
+
+        }
     }
 
     @Override

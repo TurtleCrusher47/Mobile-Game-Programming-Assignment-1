@@ -22,6 +22,7 @@ public class GameSystem
 
     public float bgmVolume = 1.0f;
     public float sfxVolume = 1.0f;
+    public float masterVolume = 2.0f;
 
     // Singleton Pattern : Blocks others from creating
     private GameSystem()

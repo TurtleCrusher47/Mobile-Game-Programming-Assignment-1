@@ -248,7 +248,7 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
                 xPos = 100;
                 yPos = screenHeight / 2;
 
-                AudioManager.Instance.PlayAudio(R.raw.hurt, 2 * GameSystem.Instance.sfxVolume);
+                AudioManager.Instance.PlayAudio(R.raw.hurt, GameSystem.Instance.sfxVolume * GameSystem.Instance.masterVolume);
 
                 StartVibrate();
             }
@@ -266,7 +266,7 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
             //Play an audio
             GameSystem.Instance.score += 10;
 
-            AudioManager.Instance.PlayAudio(R.raw.collect, 2 * GameSystem.Instance.sfxVolume);
+            AudioManager.Instance.PlayAudio(R.raw.collect, GameSystem.Instance.sfxVolume * GameSystem.Instance.masterVolume);
 
             StartVibrate();
         }

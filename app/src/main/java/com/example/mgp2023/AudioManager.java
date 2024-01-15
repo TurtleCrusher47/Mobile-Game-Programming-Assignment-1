@@ -74,7 +74,7 @@ public class AudioManager {
 
     public void SetBGMVolume(float _volume)
     {
-        audioMap.get(R.raw.bgm).setVolume(_volume, _volume);
+        audioMap.get(R.raw.bgm).setVolume(_volume * GameSystem.Instance.masterVolume , _volume * GameSystem.Instance.masterVolume );
     }
 
     public void SetSFXVolume(float _volume)
@@ -83,8 +83,24 @@ public class AudioManager {
         {
             if (i != R.raw.bgm)
             {
-                audioMap.get(i).setVolume(_volume, _volume);
+                audioMap.get(i).setVolume(_volume * GameSystem.Instance.masterVolume, _volume * GameSystem.Instance.masterVolume);
             }
         }
-    } 
+    }
+
+    public void SetMasterVolume(float _volume)
+    {
+        for (int i = 0; i < audioMap.size(); i++)
+        {
+            if (i != R.raw.bgm)
+            {
+                audioMap.get(i).setVolume(_volume * GameSystem.Instance.sfxVolume, _volume * GameSystem.Instance.sfxVolume);
+            }
+
+            else
+            {
+                audioMap.get(i).setVolume(_volume * GameSystem.Instance.bgmVolume, _volume * GameSystem.Instance.bgmVolume);
+            }
+        }
+    }
 }
