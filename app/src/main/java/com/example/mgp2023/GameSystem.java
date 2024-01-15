@@ -20,6 +20,9 @@ public class GameSystem
 
     public int health = 0;
 
+    public float bgmVolume = 1.0f;
+    public float sfxVolume = 1.0f;
+
     // Singleton Pattern : Blocks others from creating
     private GameSystem()
     {

@@ -70,7 +70,7 @@ public class MainGameSceneState implements StateBase {
 
         PauseButtonEntity.Create();
 
-        AudioManager.Instance.PlayAudio(R.raw.bgm, 0.9f);
+        AudioManager.Instance.PlayAudio(R.raw.bgm, GameSystem.Instance.bgmVolume);
 
         // Example to include another Renderview for Pause Button
     }

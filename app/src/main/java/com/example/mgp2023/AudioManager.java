@@ -71,4 +71,20 @@ public class AudioManager {
 
         return audioMap.get(_id).isPlaying();
     }
+
+    public void SetBGMVolume(float _volume)
+    {
+        audioMap.get(R.raw.bgm).setVolume(_volume, _volume);
+    }
+
+    public void SetSFXVolume(float _volume)
+    {
+        for (int i = 0; i < audioMap.size(); i++)
+        {
+            if (i != R.raw.bgm)
+            {
+                audioMap.get(i).setVolume(_volume, _volume);
+            }
+        }
+    } 
 }

@@ -69,6 +69,8 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
     @Override
     public void OnEnter(SurfaceView _view) {
 
+        AudioManager.Instance.PlayAudio(R.raw.bgm, GameSystem.Instance.bgmVolume);
+
     }
 
     @Override
