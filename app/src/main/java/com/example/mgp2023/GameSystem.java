@@ -21,6 +21,7 @@ public class GameSystem
     public double actuatorY;
 
     public int score = 0;
+    public int currentGameScore = 0;
 
     public int health = 0;
 
@@ -49,6 +50,7 @@ public class GameSystem
         StateManager.Instance.AddState(new LoseScreen());
 
         score = 0;
+        currentGameScore = 0;
         health = 3;
     }
 
@@ -102,6 +104,6 @@ public class GameSystem
 
     public int GetIntFromSave(String _key)
     {
-        return sharedPreferences.getInt(_key, 10);
+        return sharedPreferences.getInt(_key, 0);
     }
 }

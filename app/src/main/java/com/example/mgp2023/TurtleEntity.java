@@ -242,6 +242,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
                 {
                     GameSystem.Instance.isLost = true;
 
+                    GameSystem.Instance.currentGameScore = GameSystem.Instance.score;
+
                     return;
                 }
 
@@ -273,6 +275,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
         else if (_other.GetType() == "TrashBinEntity")
         {
             GameSystem.Instance.isWon = true;
+
+            GameSystem.Instance.currentGameScore = GameSystem.Instance.score;
         }
         //Log.d(TAG, "Turtle Hit");
         GamePage.Instance.CheckGameState();
