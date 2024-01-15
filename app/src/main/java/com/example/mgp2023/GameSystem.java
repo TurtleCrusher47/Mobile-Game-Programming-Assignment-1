@@ -3,16 +3,12 @@ package com.example.mgp2023;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.SurfaceView;
-import android.content.SharedPreferences;
 
 public class GameSystem
 {
     public final static GameSystem Instance = new GameSystem();
-    public final static String SHARED_PREF_ID = "GameSaveFile";
 
     // Game stuff
-    SharedPreferences sharedPreferences = null;
-    SharedPreferences.Editor editor = null;
     private boolean isPaused = false;
     public boolean isLost = false;
     public boolean isWon = false;
@@ -32,8 +28,6 @@ public class GameSystem
 
     public void Init(SurfaceView _view)
     {
-        // Get shared preferences
-        sharedPreferences = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
 
         // 2. We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());
@@ -66,43 +60,5 @@ public class GameSystem
     public boolean GetIsPaused()
     {
         return isPaused;
-    }
-
-    public void SaveEditBegin()
-    {
-        // Only allow if not already editing
-        if (editor != null)
-        {
-            return;
-        }
-
-        editor = sharedPreferences.edit();
-    }
-
-    public void SaveEditEnd()
-    {
-        if (editor == null)
-        {
-            return;
-        }
-
-        editor.commit();
-        // To ensure other functions will fail once commit is done
-        editor = null;
-    }
-
-    public void SetIntInSave(String _key, int _value)
-    {
-        if (editor == null)
-        {
-            return;
-        }
-
-        editor.putInt(_key, _value);
-    }
-
-    public int GetIntFromSave(String _key)
-    {
-        return sharedPreferences.getInt(_key, 10);
     }
 }
