@@ -32,8 +32,7 @@ public class GameSystem
 
     public void Init(SurfaceView _view)
     {
-        // Get shared preferences
-        sharedPreferences = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
+
 
         // 2. We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());
