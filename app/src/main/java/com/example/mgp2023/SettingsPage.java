@@ -72,7 +72,7 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
         else if (view == seekbar_mastervolume)
         {
-            GameSystem.Instance.masterVolume = seekbar_mastervolume.getProgress();
+            GameSystem.Instance.masterVolume = seekbar_mastervolume.getProgress() / 100;
             //AudioManager.Instance.SetMasterVolume(GameSystem.Instance.masterVolume);
 
             System.out.println(GameSystem.Instance.masterVolume);
@@ -80,7 +80,7 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
         else if (view == seekbar_bgm)
         {
-            GameSystem.Instance.bgmVolume = seekbar_bgm.getProgress();
+            GameSystem.Instance.bgmVolume = seekbar_bgm.getProgress() / 100;
             //AudioManager.Instance.SetBGMVolume(GameSystem.Instance.bgmVolume);
             System.out.println(GameSystem.Instance.bgmVolume);
 
@@ -88,7 +88,7 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
         else if (view == seekbar_sfx)
         {
-            GameSystem.Instance.sfxVolume = seekbar_sfx.getProgress();
+            GameSystem.Instance.sfxVolume = seekbar_sfx.getProgress() / 50;
             //AudioManager.Instance.SetSFXVolume(GameSystem.Instance.sfxVolume);
             System.out.println(GameSystem.Instance.sfxVolume);
 
