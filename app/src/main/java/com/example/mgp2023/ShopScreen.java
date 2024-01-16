@@ -8,6 +8,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 
+//written by Tania Lam
+
 public class ShopScreen extends Activity implements View.OnClickListener, StateBase
 {
     public static ShopScreen Instance = null;
@@ -19,50 +21,23 @@ public class ShopScreen extends Activity implements View.OnClickListener, StateB
     {
         super.onCreate(saveInstanceState);
 
-        setContentView(R.layout.losescreen);
-
-        btn_restart = (Button) findViewById(R.id.btn_restart);
-        btn_restart.setOnClickListener(this);
-        // Set Listener to this button --> Start Button
-//        btn_back = (Button) findViewById(R.id.btn_back);
-//        btn_back.setOnClickListener(this);
-        // Set Listener to this button --> Back Button
-
-        btn_quit = (Button) findViewById(R.id.btn_quit);
-        btn_quit.setOnClickListener(this);
-
-        // Make this known to the StateManager
-        StateManager.Instance.AddState(new LoseScreen());
-
-        Instance = this;
+        setContentView(R.layout.shopscreen);
 
         StateManager.Instance.Init(new SurfaceView(this));
         GameSystem.Instance.Init(new SurfaceView(this));
-        StateManager.Instance.Start("LoseScreen");
+        StateManager.Instance.Start("ShopScreen");
     }
 
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();
-        if (view == btn_restart)
-        {
-            //intent -> to set to another class which is another page or screen to be
-            //launch.
-            //Equal to change screen
-            intent.setClass(this, GamePage.class);
-            StateManager.Instance.ChangeState("MainGame");
-        }
-        else if (view == btn_quit)
-        {
-            finish();
-            System.exit(0);
-        }
+
         startActivity(intent);
     }
 
     @Override
     public String GetName() {
-        return "LoseScreen";
+        return "ShopScreen";
     }
 
     @Override
