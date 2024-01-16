@@ -53,6 +53,10 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
         StateManager.Instance.Init(new SurfaceView(this));
         GameSystem.Instance.Init(new SurfaceView(this));
         StateManager.Instance.Start("SettingsPage");
+
+        seekbar_mastervolume.setProgress(GameSystem.Instance.masterVolume);
+        seekbar_bgm.setProgress(GameSystem.Instance.bgmVolume);
+        seekbar_sfx.setProgress(GameSystem.Instance.sfxVolume);
     }
 
     @Override
@@ -102,6 +106,7 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
     @Override
     public void OnEnter(SurfaceView _view) {
+
 
     }
 
