@@ -2,6 +2,7 @@ package com.example.mgp2023;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.SurfaceView;
 
 public class GameSystem
@@ -21,8 +22,14 @@ public class GameSystem
     public int health = 0;
 
     public int bgmVolume = 100;
+
+    public float bgmVolumeFloat = 1.0f;
     public int sfxVolume = 100;
+
+    public float sfxVolumeFloat = 1.0f;
     public int masterVolume = 100;
+
+    public float masterVolumeFloat = 1.0f;
 
     // Singleton Pattern : Blocks others from creating
     private GameSystem()

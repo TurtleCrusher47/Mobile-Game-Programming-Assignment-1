@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,7 @@ import android.widget.Switch;
 
 import androidx.appcompat.widget.SwitchCompat;
 
-public class SettingsPage extends Activity implements OnClickListener, StateBase {
+public class SettingsPage extends Activity implements OnClickListener, SeekBar.OnSeekBarChangeListener, StateBase {
 
     public static SettingsPage Instance = null;
 
@@ -34,13 +35,13 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
         btn_back.setOnClickListener(this);
 
         seekbar_mastervolume = (SeekBar) findViewById(R.id.seekbar_mastervolume);
-        seekbar_mastervolume.setOnClickListener(this);
+        seekbar_mastervolume.setOnSeekBarChangeListener(this);
 
         seekbar_bgm = (SeekBar) findViewById(R.id.seekbar_bgm);
-        seekbar_bgm.setOnClickListener(this);
+        seekbar_bgm.setOnSeekBarChangeListener(this);
 
         seekbar_sfx = (SeekBar) findViewById(R.id.seekbar_sfx);
-        seekbar_sfx.setOnClickListener(this);
+        seekbar_sfx.setOnSeekBarChangeListener(this);
 
         switch_controls = (SwitchCompat) findViewById(R.id.controls_switch);
         switch_controls.setOnClickListener(this);
@@ -57,6 +58,8 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
         seekbar_mastervolume.setProgress(GameSystem.Instance.masterVolume);
         seekbar_bgm.setProgress(GameSystem.Instance.bgmVolume);
         seekbar_sfx.setProgress(GameSystem.Instance.sfxVolume);
+
+        Log.d("Settings", String.valueOf(GameSystem.Instance.masterVolume));
     }
 
     @Override
@@ -72,30 +75,6 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
         {
             GameSystem.Instance.accelerometer_control_mode = switch_controls.isChecked();
 //            System.out.println(GameSystem.Instance.accelerometer_control_mode);
-        }
-
-        else if (view == seekbar_mastervolume)
-        {
-            GameSystem.Instance.masterVolume = seekbar_mastervolume.getProgress() / 100;
-            //AudioManager.Instance.SetMasterVolume(GameSystem.Instance.masterVolume);
-
-            System.out.println(GameSystem.Instance.masterVolume);
-        }
-
-        else if (view == seekbar_bgm)
-        {
-            GameSystem.Instance.bgmVolume = seekbar_bgm.getProgress() / 100;
-            //AudioManager.Instance.SetBGMVolume(GameSystem.Instance.bgmVolume);
-            System.out.println(GameSystem.Instance.bgmVolume);
-
-        }
-
-        else if (view == seekbar_sfx)
-        {
-            GameSystem.Instance.sfxVolume = seekbar_sfx.getProgress() / 50;
-            //AudioManager.Instance.SetSFXVolume(GameSystem.Instance.sfxVolume);
-            System.out.println(GameSystem.Instance.sfxVolume);
-
         }
     }
 
@@ -122,6 +101,41 @@ public class SettingsPage extends Activity implements OnClickListener, StateBase
 
     @Override
     public void Update(float _dt) {
+
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if (seekBar == seekbar_mastervolume)
+        {
+            GameSystem.Instance.masterVolume = seekbar_mastervolume.getProgress();
+
+            Log.d("Settings", String.valueOf(GameSystem.Instance.masterVolume));
+            //AudioManager.Instance.SetMasterVolume(GameSystem.Instance.masterVolume)
+        }
+
+        else if (seekBar == seekbar_bgm)
+        {
+            GameSystem.Instance.bgmVolume = seekbar_bgm.getProgress();
+            //AudioManager.Instance.SetBGMVolume(GameSystem.Instance.bgmVolume)
+
+        }
+
+        else if (seekBar == seekbar_sfx)
+        {
+            GameSystem.Instance.sfxVolume = seekbar_sfx.getProgress();
+            //AudioManager.Instance.SetSFXVolume(GameSystem.Instance.sfxVolume);
+
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
 }
