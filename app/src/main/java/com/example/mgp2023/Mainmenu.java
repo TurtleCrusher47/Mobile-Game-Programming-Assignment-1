@@ -15,6 +15,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
     private Button btn_start;
     private Button btn_settings;
     private Button btn_quit;
+    private Button btn_shop;
 
     @Override
     protected void onCreate (Bundle saveInstanceState)
@@ -31,6 +32,9 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
 
         btn_quit = (Button) findViewById(R.id.btn_quit);
         btn_quit.setOnClickListener(this);
+
+        btn_shop = (Button) findViewById(R.id.btn_shop);
+        btn_shop.setOnClickListener(this);
 
         // Make this known to the StateManager
         StateManager.Instance.AddState(new Mainmenu());
@@ -70,6 +74,12 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
         {
             intent.setClass(this, SettingsPage.class);
             StateManager.Instance.ChangeState("SettingsPage");
+        }
+
+        else if (v == btn_shop)
+        {
+            intent.setClass(this, ShopScreen.class);
+            StateManager.Instance.ChangeState("ShopScreen");
         }
         else if (v == btn_quit)
         {

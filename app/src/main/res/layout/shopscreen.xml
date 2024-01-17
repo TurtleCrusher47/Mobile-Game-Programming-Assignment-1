@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/oceanbackground">
 
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/back"
+        android:id="@+id/btn_back">
+    </Button>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/coins"
+        android:id="@+id/tv_coins"
         android:text="$100"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
@@ -33,8 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            
+
             <RelativeLayout
+                android:id="@+id/hatGroup"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_margin="10dp">
@@ -42,79 +50,78 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:src="@drawable/tophat"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:src="@drawable/tophat">
 
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$50"
-                    android:textSize="20dp"
-                    android:textColor="#fff"
+                    android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:textStyle="bold"
-                    android:id="@+id/price"
-                    android:layout_alignParentBottom="true">
+                    android:text="$50"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:textStyle="bold">
 
                 </TextView>
 
                 <TextView
+                    android:id="@+id/bought"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bought"
-                    android:textSize="25dp"
-                    android:textColor="#fff"
                     android:layout_centerInParent="true"
-                    android:textStyle="bold"
-                    android:id="@+id/bought">
+                    android:text="Bought"
+                    android:textColor="#fff"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
 
                 </TextView>
 
             </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_margin="10dp">
-                    
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/bowtie">
+            <RelativeLayout
+                android:id="@+id/tieGroup"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp">
 
-                    </ImageView>
-                    
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$50"
-                        android:textSize="20dp"
-                        android:textColor="#fff"
-                        android:layout_centerHorizontal="true"
-                        android:textStyle="bold"
-                        android:id="@+id/price2"
-                        android:layout_alignParentBottom="true">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/bowtie">
 
-                    </TextView>
+                </ImageView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bought"
-                        android:textSize="25dp"
-                        android:textColor="#fff"
-                        android:layout_centerInParent="true"
-                        android:textStyle="bold"
-                        android:id="@+id/bought2">
+                <TextView
+                    android:id="@+id/price2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="$50"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:textStyle="bold">
 
-                    </TextView>
+                </TextView>
 
+                <TextView
+                    android:id="@+id/bought2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Bought"
+                    android:textColor="#fff"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
 
-                </RelativeLayout>
+                </TextView>
 
 
+            </RelativeLayout>
 
 
         </LinearLayout>
