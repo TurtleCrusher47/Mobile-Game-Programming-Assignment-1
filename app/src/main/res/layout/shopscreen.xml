@@ -13,6 +13,16 @@
         android:textSize="40dp"
         android:layout_marginTop="20dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/coins"
+        android:text="$100"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp"
+        android:layout_marginTop="90dp"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,8 +35,10 @@
             android:orientation="horizontal">
             
             <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp">
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp">
+
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -35,7 +47,74 @@
 
                 </ImageView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$50"
+                    android:textSize="20dp"
+                    android:textColor="#fff"
+                    android:layout_centerHorizontal="true"
+                    android:textStyle="bold"
+                    android:id="@+id/price"
+                    android:layout_alignParentBottom="true">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bought"
+                    android:textSize="25dp"
+                    android:textColor="#fff"
+                    android:layout_centerInParent="true"
+                    android:textStyle="bold"
+                    android:id="@+id/bought">
+
+                </TextView>
+
             </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_margin="10dp">
+                    
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bowtie">
+
+                    </ImageView>
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$50"
+                        android:textSize="20dp"
+                        android:textColor="#fff"
+                        android:layout_centerHorizontal="true"
+                        android:textStyle="bold"
+                        android:id="@+id/price2"
+                        android:layout_alignParentBottom="true">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bought"
+                        android:textSize="25dp"
+                        android:textColor="#fff"
+                        android:layout_centerInParent="true"
+                        android:textStyle="bold"
+                        android:id="@+id/bought2">
+
+                    </TextView>
+
+
+                </RelativeLayout>
+
+
 
 
         </LinearLayout>
