@@ -49,6 +49,7 @@ public class GameSystem
         StateManager.Instance.AddState(new MainGameSceneState());
         StateManager.Instance.AddState(new WinScreen());
         StateManager.Instance.AddState(new LoseScreen());
+        StateManager.Instance.AddState(new LeaderboardScreen());
 
         score = 0;
         currentGameScore = 0;

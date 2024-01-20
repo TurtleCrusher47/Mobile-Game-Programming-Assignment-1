@@ -14,6 +14,7 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
     public static LoseScreen Instance = null;
     private Button btn_restart;
     private Button btn_quit;
+    private Button btn_leaderboard;
 
     @Override
     protected void onCreate (Bundle saveInstanceState)
@@ -31,6 +32,9 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
 
         btn_quit = (Button) findViewById(R.id.btn_quit);
         btn_quit.setOnClickListener(this);
+
+        btn_leaderboard = (Button) findViewById(R.id.btn_leaderboard);
+        btn_leaderboard.setOnClickListener(this);
 
         // Make this known to the StateManager
         StateManager.Instance.AddState(new LoseScreen());
@@ -57,6 +61,12 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
         {
             finish();
             System.exit(0);
+        }
+
+        else if (view == btn_leaderboard)
+        {
+            intent.setClass(this, LeaderboardScreen.class);
+            StateManager.Instance.ChangeState("LeaderboardScreen");
         }
         startActivity(intent);
     }
