@@ -13,6 +13,8 @@ public class GameSystem
     public boolean isLost = false;
     public boolean isWon = false;
     public boolean accelerometer_control_mode = false;
+
+    public boolean hasHat, hasTie = false;
     public double actuatorX;
     public double actuatorY;
 
@@ -46,6 +48,10 @@ public class GameSystem
 
         score = 0;
         health = 3;
+
+        SharedPreferences sharedPreferences = _view.getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        hasHat = sharedPreferences.getBoolean("HAT", false);
+        hasTie = sharedPreferences.getBoolean("TIE", false);
     }
 
     public void Update(float _deltaTime)
