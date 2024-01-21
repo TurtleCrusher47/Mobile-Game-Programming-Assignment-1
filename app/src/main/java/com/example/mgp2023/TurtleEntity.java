@@ -1,6 +1,7 @@
 package com.example.mgp2023;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.hardware.Sensor;
@@ -25,7 +26,11 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / UpdateThread.targetFPS;
     // 1. Declare the use of spritesheet using Sprite class
     // Usual method of loading a bmp / image
-    public Bitmap bmp = null;
+    public Bitmap hatBmp = null;
+    public Bitmap tieBmp = null;
+
+    public Bitmap scaledHatBmp = null;
+    public Bitmap scaledTieBmp = null;
     public Sprite spritesheet = null;
 
     private boolean isDone = false;
@@ -46,6 +51,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
 
     private boolean canTakeDamage = true;
     private float damageTimer = 0;
+
+    private boolean hasHat, hasTie = true;
 
     int screenWidth, screenHeight;
     private static final String TAG = "Turtle";
@@ -106,6 +113,13 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
 
         imgWidth = spritesheet.GetWidth()/2 - 80;
         imgHeight = spritesheet.GetHeight()/6;
+
+        hatBmp = ResourceManager.Instance.GetBitmap(R.drawable.tophat);
+        tieBmp = ResourceManager.Instance.GetBitmap(R.drawable.bowtie);
+
+        scaledHatBmp = Bitmap.createScaledBitmap(hatBmp, screenWidth/30, screenWidth/30, true);
+        scaledTieBmp = Bitmap.createScaledBitmap(tieBmp, screenWidth/40, screenWidth/40, true);
+
 
         vibrator = (Vibrator)_view.getContext().getSystemService(_view.getContext().VIBRATOR_SERVICE);
 
@@ -179,6 +193,16 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
 
         // This is for our sprite animation!
         spritesheet.Render(_canvas, (int)xPos, (int)yPos);
+
+        if (GameSystem.Instance.hasHat)
+        {
+            _canvas.drawBitmap(scaledHatBmp, (int)xPos + 45, (int)yPos - 100, null);
+        }
+
+        if (GameSystem.Instance.hasTie)
+        {
+            _canvas.drawBitmap(scaledTieBmp, (int)xPos + 20, (int)yPos, null);
+        }
 
     }
 

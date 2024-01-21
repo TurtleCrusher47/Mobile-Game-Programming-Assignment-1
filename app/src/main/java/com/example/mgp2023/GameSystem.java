@@ -17,6 +17,8 @@ public class GameSystem
     public boolean isLost = false;
     public boolean isWon = false;
     public boolean accelerometer_control_mode = false;
+
+    public boolean hasHat, hasTie = false;
     public double actuatorX;
     public double actuatorY;
 
@@ -33,6 +35,7 @@ public class GameSystem
 
     public void Init(SurfaceView _view)
     {
+        sharedPreferences = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
 
 
         // 2. We will add all of our states into the state manager here!
@@ -54,6 +57,10 @@ public class GameSystem
         score = 0;
         currentGameScore = 0;
         health = 3;
+
+        SharedPreferences sharedPreferences = _view.getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        hasHat = sharedPreferences.getBoolean("HAT", false);
+        hasTie = sharedPreferences.getBoolean("TIE", false);
     }
 
     public void Update(float _deltaTime)
@@ -107,5 +114,20 @@ public class GameSystem
     public int GetIntFromSave(String _key)
     {
         return sharedPreferences.getInt(_key, 0);
+    }
+
+    public void SetBoolInSave(String _key, boolean _value)
+    {
+        if (editor == null)
+        {
+            return;
+        }
+
+        editor.putBoolean(_key, _value);
+    }
+
+    public boolean GetBoolFromSave(String _key)
+    {
+        return sharedPreferences.getBoolean(_key, false);
     }
 }
