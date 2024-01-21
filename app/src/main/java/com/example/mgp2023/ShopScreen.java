@@ -51,12 +51,12 @@ public class ShopScreen extends Activity implements View.OnClickListener, StateB
         GameSystem.Instance.Init(new SurfaceView(this));
         StateManager.Instance.Start("ShopScreen");
 
-        SharedPreferences sharedPreferences = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
-        coins = sharedPreferences.getInt("COINS", 0);
-        hasHat = sharedPreferences.getBoolean("HAT", false);
-        hasTie = sharedPreferences.getBoolean("TIE", false);
+        SharedPreferences sharedPreferences = getSharedPreferences("GameSaveFile"   , Context.MODE_PRIVATE);
+        coins = GameSystem.Instance.GetIntFromSave("COINS");
+        hasHat = GameSystem.Instance.GetBoolFromSave("HAT");
+        hasTie = GameSystem.Instance.GetBoolFromSave("TIE");
 
-        coins = 100;
+        //coins = 100;
 
         tv_coins.setText("$"+coins);
 
@@ -95,7 +95,14 @@ public class ShopScreen extends Activity implements View.OnClickListener, StateB
                 hasHat = true;
 
                 //update coins amt in shared prefs
+                GameSystem.Instance.SaveEditBegin();
+                GameSystem.Instance.SetIntInSave("COINS", coins);
+                GameSystem.Instance.SaveEditEnd();
+
                 //update hasHat bool in shared prefs
+                GameSystem.Instance.SaveEditBegin();
+                GameSystem.Instance.SetBoolInSave("HAT", true);
+                GameSystem.Instance.SaveEditEnd();
             }
         }
 
@@ -109,7 +116,14 @@ public class ShopScreen extends Activity implements View.OnClickListener, StateB
                 hasTie = true;
 
                 //update coins amt in shared prefs
-                //update hasTie bool in shared prefs
+                GameSystem.Instance.SaveEditBegin();
+                GameSystem.Instance.SetIntInSave("COINS", coins);
+                GameSystem.Instance.SaveEditEnd();
+
+                //update hasHat bool in shared prefs
+                GameSystem.Instance.SaveEditBegin();
+                GameSystem.Instance.SetBoolInSave("TIE", true);
+                GameSystem.Instance.SaveEditEnd();
             }
         }
     }

@@ -7,6 +7,7 @@ import android.view.SurfaceView;
 public class GameSystem
 {
     public final static GameSystem Instance = new GameSystem();
+    public final static String SHARED_PREF_ID = "GameSaveFile";
 
     // Game stuff
     private boolean isPaused = false;
@@ -30,6 +31,7 @@ public class GameSystem
 
     public void Init(SurfaceView _view)
     {
+        sharedPreferences = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
 
         // 2. We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());
@@ -67,5 +69,58 @@ public class GameSystem
     public boolean GetIsPaused()
     {
         return isPaused;
+    }
+
+    public void SaveEditBegin()
+    {
+        // Only allow if not already editing
+        if (editor != null)
+        {
+            return;
+        }
+
+        editor = sharedPreferences.edit();
+    }
+
+    public void SaveEditEnd()
+    {
+        if (editor == null)
+        {
+            return;
+        }
+
+        editor.commit();
+        // To ensure other functions will fail once commit is done
+        editor = null;
+    }
+
+    public void SetIntInSave(String _key, int _value)
+    {
+        if (editor == null)
+        {
+            return;
+        }
+
+        editor.putInt(_key, _value);
+    }
+
+    public int GetIntFromSave(String _key)
+    {
+        return sharedPreferences.getInt(_key, 0);
+    }
+
+    public void SetBoolInSave(String _key, boolean _value)
+    {
+        if (editor == null)
+        {
+            return;
+        }
+
+        editor.putBoolean(_key, _value);
+    }
+
+    public boolean GetBoolFromSave(String _key)
+    {
+        return sharedPreferences.getBoolean(_key, false);
     }
 }
