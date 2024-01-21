@@ -8,6 +8,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class WinScreen extends Activity implements OnClickListener, StateBase
 {
@@ -16,6 +17,8 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
     private Button btn_back;
 
     private Button btn_leaderboard;
+    private TextView tv_score;
+    private int score;
 
     @Override
     protected void onCreate (Bundle saveInstanceState)
@@ -36,6 +39,10 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
 
         btn_leaderboard = (Button) findViewById(R.id.btn_leaderboard);
         btn_leaderboard.setOnClickListener(this);
+
+        tv_score = (TextView) findViewById(R.id.tv_score);
+
+        score = GameSystem.Instance.
 
         // Make this known to the StateManager
         StateManager.Instance.AddState(new WinScreen());
