@@ -2,7 +2,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgnd">
+    android:background="@drawable/oceanbackground">
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/back"
+        android:id="@+id/btn_back">
+    </Button>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shop"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="40dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_coins"
+        android:text="$100"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp"
+        android:layout_marginTop="90dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -14,17 +40,86 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            
+
             <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp">
+                android:id="@+id/hatGroup"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp">
+
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:src="@drawable/burgle_image"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:src="@drawable/tophat">
 
                 </ImageView>
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="$50"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/bought"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Bought"
+                    android:textColor="#fff"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tieGroup"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/bowtie">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/price2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="$50"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/bought2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Bought"
+                    android:textColor="#fff"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
 
             </RelativeLayout>
 

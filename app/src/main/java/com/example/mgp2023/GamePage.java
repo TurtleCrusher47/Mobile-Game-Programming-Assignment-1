@@ -18,6 +18,9 @@ public class GamePage extends FragmentActivity
     {
         super.onCreate(savedInstanceState);
 
+        // Get shared preferences
+        GameSystem.Instance.sharedPreferences = getSharedPreferences(GameSystem.SHARED_PREF_ID, 0);
+
         Instance = this;
 
         setContentView(new GameView(this)); // Surfaceview = GameView
@@ -39,12 +42,17 @@ public class GamePage extends FragmentActivity
 
     public void CheckGameState()
     {
-        System.out.println("check game state");
+//        System.out.println("check game state");
 
         if (GameSystem.Instance.isLost)
         {
             Intent intent = new Intent(GamePage.this, LoseScreen.class);
             StateManager.Instance.ChangeState("LoseScreen");
+
+//            System.out.println(GameSystem.Instance.currentGameScore);
+            GameSystem.Instance.SaveEditBegin();
+            GameSystem.Instance.SetIntInSave("Score", GameSystem.Instance.currentGameScore);
+            GameSystem.Instance.SaveEditEnd();
 
             startActivity(intent);
         }
@@ -53,6 +61,10 @@ public class GamePage extends FragmentActivity
         {
             Intent intent = new Intent(GamePage.this, WinScreen.class);
             StateManager.Instance.ChangeState("WinScreen");
+
+            GameSystem.Instance.SaveEditBegin();
+            GameSystem.Instance.SetIntInSave("Score", GameSystem.Instance.currentGameScore);
+            GameSystem.Instance.SaveEditEnd();
 
             startActivity(intent);
         }

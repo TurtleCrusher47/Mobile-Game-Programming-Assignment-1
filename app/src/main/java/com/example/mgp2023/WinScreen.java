@@ -8,12 +8,17 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class WinScreen extends Activity implements OnClickListener, StateBase
 {
     public static WinScreen Instance = null;
     private Button btn_restart;
     private Button btn_back;
+
+    private Button btn_leaderboard;
+    private TextView tv_score;
+    private int score;
 
     @Override
     protected void onCreate (Bundle saveInstanceState)
@@ -31,6 +36,13 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
 
         btn_back = (Button) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
+
+        btn_leaderboard = (Button) findViewById(R.id.btn_leaderboard);
+        btn_leaderboard.setOnClickListener(this);
+
+        tv_score = (TextView) findViewById(R.id.tv_score);
+
+        score = GameSystem.Instance.
 
         // Make this known to the StateManager
         StateManager.Instance.AddState(new WinScreen());
@@ -57,6 +69,12 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
         {
             intent.setClass(this, Mainmenu.class);
             StateManager.Instance.ChangeState("MainMenu");
+        }
+
+        else if (view == btn_leaderboard)
+        {
+            intent.setClass(this, LeaderboardScreen.class);
+            StateManager.Instance.ChangeState("LeaderboardScreen");
         }
         startActivity(intent);
     }

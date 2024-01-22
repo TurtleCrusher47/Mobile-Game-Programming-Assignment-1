@@ -14,7 +14,7 @@
         <Button
             android:id="@+id/btn_start"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:padding="5dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="170dp"
@@ -27,7 +27,7 @@
         <Button
             android:id="@+id/btn_settings"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:background="@drawable/button"
@@ -35,11 +35,23 @@
             android:textColor="#ffffff"
             android:textSize="18dp" />
 
+<!--        Shop Button-->
+        <Button
+            android:id="@+id/btn_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button"
+            android:text="Shop"
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
+
 <!--        Quit Button-->
         <Button
             android:id="@+id/btn_quit"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:background="@drawable/button"
