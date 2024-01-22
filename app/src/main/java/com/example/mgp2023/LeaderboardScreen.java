@@ -18,6 +18,7 @@ public class LeaderboardScreen extends Activity implements View.OnClickListener,
     public static LeaderboardScreen Instance = null;
     private TextView tv_leaderboard;
     private Button btn_back;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate (Bundle saveInstanceState)
@@ -28,13 +29,16 @@ public class LeaderboardScreen extends Activity implements View.OnClickListener,
 
         btn_back = (Button) findViewById(R.id.btn_back);
 
+        tv_leaderboard = (TextView) findViewById(R.id.tv_leaderboard);
+
         StateManager.Instance.Init(new SurfaceView(this));
         GameSystem.Instance.Init(new SurfaceView(this));
         StateManager.Instance.Start("LeaderboardScreen");
 
-        SharedPreferences sharedPreferences = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
-
         btn_back.setOnClickListener(this);
+
+        int highscore = GameSystem.Instance.GetIntFromSave("HIGHSCORE");
+        tv_leaderboard.setText("Highscore: " + highscore);
     }
 
     @Override

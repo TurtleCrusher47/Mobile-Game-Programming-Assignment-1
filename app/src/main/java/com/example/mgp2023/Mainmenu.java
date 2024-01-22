@@ -39,6 +39,8 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase
         // Make this known to the StateManager
         StateManager.Instance.AddState(new Mainmenu());
 
+        GameSystem.Instance.sharedPreferences = getSharedPreferences(GameSystem.SHARED_PREF_ID, 0);
+
         Instance = this;
 
         StateManager.Instance.Init(new SurfaceView(this));

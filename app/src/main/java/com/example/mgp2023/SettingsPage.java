@@ -24,6 +24,8 @@ public class SettingsPage extends Activity implements OnClickListener, SeekBar.O
     private SeekBar seekbar_sfx;
     private SwitchCompat switch_controls;
 
+    private int masterVolume, bgmVolume, sfxVolume;
+
     @Override
     protected void onCreate (Bundle saveInstanceState)
     {
@@ -55,11 +57,15 @@ public class SettingsPage extends Activity implements OnClickListener, SeekBar.O
         GameSystem.Instance.Init(new SurfaceView(this));
         StateManager.Instance.Start("SettingsPage");
 
-        seekbar_mastervolume.setProgress(GameSystem.Instance.masterVolume);
-        seekbar_bgm.setProgress(GameSystem.Instance.bgmVolume);
-        seekbar_sfx.setProgress(GameSystem.Instance.sfxVolume);
+        masterVolume = GameSystem.Instance.GetIntFromSave("MASTER");
+        bgmVolume = GameSystem.Instance.GetIntFromSave("BGM");
+        sfxVolume = GameSystem.Instance.GetIntFromSave("SFX");
 
-        Log.d("Settings", String.valueOf(GameSystem.Instance.masterVolume));
+        seekbar_mastervolume.setProgress(masterVolume);
+        seekbar_bgm.setProgress(bgmVolume);
+        seekbar_sfx.setProgress(sfxVolume);
+
+        Log.d("Settings", String.valueOf(masterVolume));
     }
 
     @Override
@@ -106,26 +112,26 @@ public class SettingsPage extends Activity implements OnClickListener, SeekBar.O
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (seekBar == seekbar_mastervolume)
-        {
-            GameSystem.Instance.masterVolume = seekbar_mastervolume.getProgress();
-
-            Log.d("Settings", String.valueOf(GameSystem.Instance.masterVolume));
-            //AudioManager.Instance.SetMasterVolume(GameSystem.Instance.masterVolume)
+        if (seekBar == seekbar_mastervolume) {
+            GameSystem.Instance.SaveEditBegin();
+            GameSystem.Instance.SetIntInSave("MASTER", seekbar_mastervolume.getProgress());
+            GameSystem.Instance.SaveEditEnd();
         }
 
         else if (seekBar == seekbar_bgm)
         {
-            GameSystem.Instance.bgmVolume = seekbar_bgm.getProgress();
-            //AudioManager.Instance.SetBGMVolume(GameSystem.Instance.bgmVolume)
-
+            GameSystem.Instance.SaveEditBegin();
+            GameSystem.Instance.SetIntInSave("BGM", seekbar_bgm.getProgress());
+            GameSystem.Instance.SaveEditEnd();
         }
 
         else if (seekBar == seekbar_sfx)
         {
-            GameSystem.Instance.sfxVolume = seekbar_sfx.getProgress();
-            //AudioManager.Instance.SetSFXVolume(GameSystem.Instance.sfxVolume);
+            GameSystem.Instance.SaveEditBegin();
+            GameSystem.Instance.SetIntInSave("SFX", seekbar_sfx.getProgress());
+            GameSystem.Instance.SaveEditEnd();
 
+            Log.d("Settings", String.valueOf(GameSystem.Instance.GetIntFromSave("SFX")));
         }
     }
 

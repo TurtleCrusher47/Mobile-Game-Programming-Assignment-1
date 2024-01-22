@@ -42,7 +42,26 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
 
         tv_score = (TextView) findViewById(R.id.tv_score);
 
-        score = GameSystem.Instance.
+        score = GameSystem.Instance.score;
+
+        tv_score.setText("Score: " + score);
+
+        int highscore = GameSystem.Instance.GetIntFromSave("HIGHSCORE");
+
+        //set new highscore
+        if (score > highscore)
+        {
+            GameSystem.Instance.SaveEditBegin();
+            GameSystem.Instance.SetIntInSave("HIGHSCORE", score);
+            GameSystem.Instance.SaveEditEnd();
+        }
+
+        //add coins to wallet
+        int coins = GameSystem.Instance.GetIntFromSave("COINS");
+
+        GameSystem.Instance.SaveEditBegin();
+        GameSystem.Instance.SetIntInSave("COINS", coins + score);
+        GameSystem.Instance.SaveEditEnd();
 
         // Make this known to the StateManager
         StateManager.Instance.AddState(new WinScreen());

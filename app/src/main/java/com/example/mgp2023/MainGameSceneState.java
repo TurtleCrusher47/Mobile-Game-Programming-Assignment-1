@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceView;
 
 public class MainGameSceneState implements StateBase {
@@ -15,6 +16,8 @@ public class MainGameSceneState implements StateBase {
     public String GetName() {
         return "MainGame";
     }
+
+    private float masterVolume, bgmVolume, sfxVolume;
 
     @Override
     public void OnEnter(SurfaceView _view)
@@ -70,7 +73,11 @@ public class MainGameSceneState implements StateBase {
 
         PauseButtonEntity.Create();
 
-        AudioManager.Instance.PlayAudio(R.raw.bgm, GameSystem.Instance.bgmVolume * GameSystem.Instance.masterVolume);
+        //masterVolume = (float) GameSystem.Instance.GetIntFromSave("MASTER") / 100;
+        //bgmVolume = (float) GameSystem.Instance.GetIntFromSave("BGM") / 100;
+        //sfxVolume = (float) GameSystem.Instance.GetIntFromSave("SFX") / 100;
+
+        //AudioManager.Instance.PlayAudio(R.raw.bgm, bgmVolume * masterVolume);
 
         // Example to include another Renderview for Pause Button
     }
@@ -96,7 +103,10 @@ public class MainGameSceneState implements StateBase {
     {
         if (!AudioManager.Instance.IsPlaying(R.raw.bgm))
         {
-            AudioManager.Instance.PlayAudio(R.raw.bgm, 0.9f);
+            masterVolume = (float) GameSystem.Instance.GetIntFromSave("MASTER") / 100;
+            bgmVolume = (float) GameSystem.Instance.GetIntFromSave("BGM") / 100;
+
+            AudioManager.Instance.PlayAudio(R.raw.bgm, bgmVolume * masterVolume);
         }
 
 

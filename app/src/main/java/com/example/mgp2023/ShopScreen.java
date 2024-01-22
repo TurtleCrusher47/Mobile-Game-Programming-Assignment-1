@@ -56,8 +56,6 @@ public class ShopScreen extends Activity implements View.OnClickListener, StateB
         hasHat = GameSystem.Instance.GetBoolFromSave("HAT");
         hasTie = GameSystem.Instance.GetBoolFromSave("TIE");
 
-        //coins = 100;
-
         tv_coins.setText("$"+coins);
 
         if (hasHat == false)

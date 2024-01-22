@@ -18,8 +18,6 @@ public class GameSystem
     public boolean isLost = false;
     public boolean isWon = false;
     public boolean accelerometer_control_mode = false;
-
-    public boolean hasHat, hasTie = false;
     public double actuatorX;
     public double actuatorY;
 
@@ -27,15 +25,6 @@ public class GameSystem
     public int currentGameScore = 0;
 
     public int health = 0;
-
-    public int bgmVolume = 100;
-
-    public float bgmVolumeFloat = 1.0f;
-    public int sfxVolume = 100;
-
-    public float sfxVolumeFloat = 1.0f;
-    public int masterVolume = 100;
-
     public float masterVolumeFloat = 1.0f;
 
     // Singleton Pattern : Blocks others from creating
@@ -46,8 +35,7 @@ public class GameSystem
 
     public void Init(SurfaceView _view)
     {
-        sharedPreferences = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
-
+        sharedPreferences = Mainmenu.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
 
         // 2. We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());
@@ -69,9 +57,6 @@ public class GameSystem
         currentGameScore = 0;
         health = 3;
 
-        SharedPreferences sharedPreferences = _view.getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
-        hasHat = sharedPreferences.getBoolean("HAT", false);
-        hasTie = sharedPreferences.getBoolean("TIE", false);
     }
 
     public void Update(float _deltaTime)

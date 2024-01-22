@@ -19,13 +19,12 @@ public class GamePage extends FragmentActivity
         super.onCreate(savedInstanceState);
 
         // Get shared preferences
-        GameSystem.Instance.sharedPreferences = getSharedPreferences(GameSystem.SHARED_PREF_ID, 0);
 
         Instance = this;
 
         setContentView(new GameView(this)); // Surfaceview = GameView
 
-        Log.d("Settings", String.valueOf(GameSystem.Instance.masterVolume));
+        //Log.d("Settings", String.valmasterVolume));
     }
 
     @Override

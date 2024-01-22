@@ -63,6 +63,8 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
     private float[] gravity = {0, 0, 0};
     private float[] linear_acceleration = {0, 0, 0};
 
+    private float masterVolume, sfxVolume;
+
     @Override
     public boolean IsDone() {
         return isDone;
@@ -194,12 +196,12 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
         // This is for our sprite animation!
         spritesheet.Render(_canvas, (int)xPos, (int)yPos);
 
-        if (GameSystem.Instance.hasHat)
+        if (GameSystem.Instance.GetBoolFromSave("HAT"))
         {
             _canvas.drawBitmap(scaledHatBmp, (int)xPos + 45, (int)yPos - 100, null);
         }
 
-        if (GameSystem.Instance.hasTie)
+        if (GameSystem.Instance.GetBoolFromSave("TIE"))
         {
             _canvas.drawBitmap(scaledTieBmp, (int)xPos + 20, (int)yPos, null);
         }
@@ -274,7 +276,10 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
                 xPos = 100;
                 yPos = screenHeight / 2;
 
-                AudioManager.Instance.PlayAudio(R.raw.hurt, GameSystem.Instance.sfxVolume * GameSystem.Instance.masterVolume);
+                masterVolume = (float) GameSystem.Instance.GetIntFromSave("MASTER")/ 100;
+                sfxVolume = (float) GameSystem.Instance.GetIntFromSave("SFX")/ 100;
+
+                AudioManager.Instance.PlayAudio(R.raw.hurt, sfxVolume * masterVolume);
 
                 StartVibrate();
             }
@@ -292,7 +297,10 @@ public class TurtleEntity implements EntityBase, ICollidableBox, SensorEventList
             //Play an audio
             GameSystem.Instance.score += 10;
 
-            AudioManager.Instance.PlayAudio(R.raw.collect, GameSystem.Instance.sfxVolume * GameSystem.Instance.masterVolume);
+            masterVolume = (float) GameSystem.Instance.GetIntFromSave("MASTER")/ 100;
+            sfxVolume = (float) GameSystem.Instance.GetIntFromSave("SFX")/ 100;
+
+            AudioManager.Instance.PlayAudio(R.raw.collect, sfxVolume * masterVolume);
 
             StartVibrate();
         }
