@@ -71,6 +71,8 @@ public class WinScreen extends Activity implements OnClickListener, StateBase
         StateManager.Instance.Init(new SurfaceView(this));
         GameSystem.Instance.Init(new SurfaceView(this));
         StateManager.Instance.Start("WinScreen");
+
+        GameSystem.Instance.lastScreen = "WinScreen";
     }
 
     @Override

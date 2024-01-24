@@ -44,6 +44,8 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
         StateManager.Instance.Init(new SurfaceView(this));
         GameSystem.Instance.Init(new SurfaceView(this));
         StateManager.Instance.Start("LoseScreen");
+
+        GameSystem.Instance.lastScreen = "LoseScreen";
     }
 
     @Override
@@ -59,8 +61,8 @@ public class LoseScreen extends Activity implements OnClickListener, StateBase
         }
         else if (view == btn_quit)
         {
-            finish();
-            System.exit(0);
+            intent.setClass(this, Mainmenu.class);
+            StateManager.Instance.ChangeState("MainMenu");
         }
 
         else if (view == btn_leaderboard)

@@ -27,6 +27,8 @@ public class GameSystem
     public int health = 0;
     public float masterVolumeFloat = 1.0f;
 
+    public String lastScreen = null;
+
     // Singleton Pattern : Blocks others from creating
     private GameSystem()
     {

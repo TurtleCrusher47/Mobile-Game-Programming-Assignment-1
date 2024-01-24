@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
@@ -28,14 +29,13 @@ public class LeaderboardScreen extends Activity implements View.OnClickListener,
         setContentView(R.layout.leaderboardscreen);
 
         btn_back = (Button) findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(this);
 
         tv_leaderboard = (TextView) findViewById(R.id.tv_leaderboard);
 
         StateManager.Instance.Init(new SurfaceView(this));
         GameSystem.Instance.Init(new SurfaceView(this));
         StateManager.Instance.Start("LeaderboardScreen");
-
-        btn_back.setOnClickListener(this);
 
         int highscore = GameSystem.Instance.GetIntFromSave("HIGHSCORE");
         tv_leaderboard.setText("Highscore: " + highscore);
@@ -47,8 +47,21 @@ public class LeaderboardScreen extends Activity implements View.OnClickListener,
 
         if (view == btn_back)
         {
-            finish();
-            System.exit(0);
+            Log.d("leaderboard", "onClick: " + GameSystem.Instance.lastScreen);
+
+            if (GameSystem.Instance.lastScreen == "WinScreen")
+            {
+                intent.setClass(this, WinScreen.class);
+                StateManager.Instance.ChangeState("WinScreen");
+            }
+            else if (GameSystem.Instance.lastScreen == "LoseScreen")
+            {
+                intent.setClass(this, LoseScreen.class);
+                StateManager.Instance.ChangeState("LoseScreen");
+            }
+
+            startActivity(intent);
+
         }
 
     }
